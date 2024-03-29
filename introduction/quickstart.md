@@ -32,20 +32,15 @@ impl Solution {
         if needle.is_empty() {
             return 0;
         }
-
-        let haystack_bytes = haystack.as_bytes();
-        let needle_bytes = needle.as_bytes();
-
-        'outer: for i in 0..haystack_bytes.len() - needle_bytes.len() + 1 {
-            for (j, &b) in needle_bytes.iter().enumerate() {
-                if b != haystack_bytes[i + j] {
-                    continue 'outer;
-                }
-            }
-
-            return i as i32;
+        let (haystack_len, needle_len) = (haystack.len(), needle.len());
+        if haystack_len < needle_len {
+            return -1;
         }
-
+        for i in 0..=haystack_len - needle_len {
+            if &haystack[i..i + needle_len] == needle {
+                return i as i32;
+            }
+        }
         -1
     }
 }
