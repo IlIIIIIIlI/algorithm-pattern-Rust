@@ -6,114 +6,99 @@
 
 ## 示例
 
-[reverse-string](https://leetcode-cn.com/problems/reverse-string/)
+### [reverse-string](https://leetcode-cn.com/problems/reverse-string/)
 
 > 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组  `char[]`  的形式给出。
 
-```go
-func reverseString(s []byte) {
-	res := make([]byte, 0)
-	reverse(s, 0, &res)
-	for i := 0; i < len(s); i++ {
-		s[i] = res[i]
-	}
-}
-func reverse(s []byte, i int, res *[]byte) {
-	if i == len(s) {
-		return
-	}
-	reverse(s, i+1, res)
-	*res = append(*res, s[i])
-}
+```Python
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        def rev_rec(s, i, j):
+            if i >= j:
+                return
+            s[i], s[j] = s[j], s[i]
+            rev_rec(s, i + 1, j - 1)
+            return
+        
+        rev_rec(s, 0, len(s) - 1)
+        
+        return
 ```
 
-[swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+### [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
 > 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
 > **你不能只是单纯的改变节点内部的值**，而是需要实际的进行节点交换。
 
-```go
-func swapPairs(head *ListNode) *ListNode {
-    // 思路：将链表翻转转化为一个子问题，然后通过递归方式依次解决
-    // 先翻转两个，然后将后面的节点继续这样翻转，然后将这些翻转后的节点连接起来
-    return helper(head)
-}
-func helper(head *ListNode)*ListNode{
-    if head==nil||head.Next==nil{
+```Python
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        
+        if head is not None and head.next is not None:
+            head_next_pair = self.swapPairs(head.next.next)
+            p = head.next
+            head.next = head_next_pair
+            p.next = head
+            head = p
+        
         return head
-    }
-    // 保存下一阶段的头指针
-    nextHead:=head.Next.Next
-    // 翻转当前阶段指针
-    next:=head.Next
-    next.Next=head
-    head.Next=helper(nextHead)
-    return next
-}
 ```
 
-[unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
+### [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
 
 > 给定一个整数 n，生成所有由 1 ... n 为节点所组成的二叉搜索树。
 
-```go
-func generateTrees(n int) []*TreeNode {
-    if n==0{
-        return nil
-    }
-    return generate(1,n)
+注意：此题用来训练递归思维有理论意义，但是实际上算法返回的树并不是 deep copy，多个树之间会共享子树。
 
-}
-func generate(start,end int)[]*TreeNode{
-    if start>end{
-        return []*TreeNode{nil}
-    }
-    ans:=make([]*TreeNode,0)
-    for i:=start;i<=end;i++{
-        // 递归生成所有左右子树
-        lefts:=generate(start,i-1)
-        rights:=generate(i+1,end)
-        // 拼接左右子树后返回
-        for j:=0;j<len(lefts);j++{
-            for k:=0;k<len(rights);k++{
-                root:=&TreeNode{Val:i}
-                root.Left=lefts[j]
-                root.Right=rights[k]
-                ans=append(ans,root)
-            }
-        }
-    }
-    return ans
-}
+```Python
+class Solution:
+    def generateTrees(self, n: int) -> List[TreeNode]:
+        
+        def generateTrees_rec(i, j):
+            
+            if i > j:
+                return [None]
+            
+            result = []
+            for m in range(i, j + 1):
+                left = generateTrees_rec(i, m - 1)
+                right = generateTrees_rec(m + 1, j)
+                
+                for l in left:
+                    for r in right:
+                        result.append(TreeNode(m, l, r))
+            
+            return result
+        
+        return generateTrees_rec(1, n) if n > 0 else []
 ```
 
-## 递归+备忘录
+## 递归 + 备忘录 (recursion with memorization, top-down DP)
 
-[fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
+### [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
 
 > 斐波那契数，通常用  F(n) 表示，形成的序列称为斐波那契数列。该数列由  0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：
 > F(0) = 0,   F(1) = 1
 > F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 > 给定  N，计算  F(N)。
 
-```go
-func fib(N int) int {
-    return dfs(N)
-}
-var m map[int]int=make(map[int]int)
-func dfs(n int)int{
-    if n < 2{
-        return n
-    }
-    // 读取缓存
-    if m[n]!=0{
-        return m[n]
-    }
-    ans:=dfs(n-2)+dfs(n-1)
-    // 缓存已经计算过的值
-    m[n]=ans
-    return ans
-}
+```Python
+class Solution:
+    def fib(self, N: int) -> int:
+        
+        mem = [-1] * (N + 2)
+        
+        mem[0], mem[1] = 0, 1
+        
+        def fib_rec(n):
+            if mem[n] == -1:
+                mem[n] = fib_rec(n - 1) + fib_rec(n - 2)
+            return mem[n]
+        
+        return fib_rec(N)
 ```
 
 ## 练习
@@ -122,3 +107,4 @@ func dfs(n int)int{
 - [ ] [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 - [ ] [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
 - [ ] [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
+

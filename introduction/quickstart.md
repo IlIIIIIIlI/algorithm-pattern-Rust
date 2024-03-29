@@ -9,48 +9,58 @@
 
 先介绍两个算法题，试试感觉~
 
-示例 1
-
-[strStr](https://leetcode-cn.com/problems/implement-strstr/)
+### [示例 1：strStr](https://leetcode-cn.com/problems/implement-strstr/)
 
 > 给定一个  haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从 0 开始)。如果不存在，则返回  -1。
 
-思路：核心点遍历给定字符串字符，判断以当前字符开头字符串是否等于目标字符串
+- 思路：核心点遍历给定字符串字符，判断以当前字符开头字符串是否等于目标字符串
 
-```go
-func strStr(haystack string, needle string) int {
-    if len(needle) == 0 {
-        return 0
-    }
-    var i, j int
-    // i不需要到len-1
-    for i = 0; i < len(haystack)-len(needle)+1; i++ {
-        for j = 0; j < len(needle); j++ {
-            if haystack[i+j] != needle[j] {
-                break
+```Python
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        L, n = len(needle), len(haystack)
+
+        for start in range(n - L + 1):
+            if haystack[start:start + L] == needle:
+                return start
+        return -1
+```
+
+```Rust
+impl Solution {
+    pub fn str_str(haystack: String, needle: String) -> i32 {
+        if needle.is_empty() {
+            return 0;
+        }
+
+        let haystack_bytes = haystack.as_bytes();
+        let needle_bytes = needle.as_bytes();
+
+        'outer: for i in 0..haystack_bytes.len() - needle_bytes.len() + 1 {
+            for (j, &b) in needle_bytes.iter().enumerate() {
+                if b != haystack_bytes[i + j] {
+                    continue 'outer;
+                }
             }
+
+            return i as i32;
         }
-        // 判断字符串长度是否相等
-        if len(needle) == j {
-            return i
-        }
+
+        -1
     }
-    return -1
 }
 ```
 
 需要注意点
 
 - 循环时，i 不需要到 len-1
-- 如果找到目标字符串，len(needle)==j
+- 如果找到目标字符串，len(needle) == j
 
-示例 2
-
-[subsets](https://leetcode-cn.com/problems/subsets/)
+### [示例 2：subsets](https://leetcode-cn.com/problems/subsets/)
 
 > 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
 
-思路：这是一个典型的应用回溯法的题目，简单来说就是穷尽所有可能性，算法模板如下
+- 思路：这是一个典型的应用回溯法的题目，简单来说就是穷尽所有可能性，算法模板如下
 
 ```go
 result = []
@@ -64,36 +74,31 @@ func backtrack(选择列表,路径):
         撤销选择
 ```
 
-通过不停的选择，撤销选择，来穷尽所有可能性，最后将满足条件的结果返回
+- 通过不停的选择，撤销选择，来穷尽所有可能性，最后将满足条件的结果返回。答案代码：
 
-答案代码
+```Python
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
 
-```go
-func subsets(nums []int) [][]int {
-    // 保存最终结果
-    result := make([][]int, 0)
-    // 保存中间结果
-    list := make([]int, 0)
-    backtrack(nums, 0, list, &result)
-    return result
-}
+        n = len(nums)
+        result = []
 
-// nums 给定的集合
-// pos 下次添加到集合中的元素位置索引
-// list 临时结果集合(每次需要复制保存)
-// result 最终结果
-func backtrack(nums []int, pos int, list []int, result *[][]int) {
-    // 把临时结果复制出来保存到最终结果
-    ans := make([]int, len(list))
-    copy(ans, list)
-    *result = append(*result, ans)
-    // 选择、处理结果、再撤销选择
-    for i := pos; i < len(nums); i++ {
-        list = append(list, nums[i])
-        backtrack(nums, i+1, list, result)
-        list = list[0 : len(list)-1]
-    }
-}
+        def backtrack(start, k, route=[]):
+            if len(route) == k:
+                result.append(route.copy())
+                return
+
+            for i in range(start, n):
+                route.append(nums[i])
+                backtrack(i + 1, k)
+                route.pop()
+
+            return
+
+        for k in range(n + 1):
+            backtrack(0, k)
+
+        return result
 ```
 
 说明：后面会深入讲解几个典型的回溯算法问题，如果当前不太了解可以暂时先跳过

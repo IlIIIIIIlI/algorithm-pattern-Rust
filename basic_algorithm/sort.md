@@ -4,84 +4,77 @@
 
 ### 快速排序
 
-```go
-func QuickSort(nums []int) []int {
-    // 思路：把一个数组分为左右两段，左段小于右段
-    quickSort(nums, 0, len(nums)-1)
-    return nums
+```Python
+import random
 
-}
-// 原地交换，所以传入交换索引
-func quickSort(nums []int, start, end int) {
-    if start < end {
-        // 分治法：divide
-        pivot := partition(nums, start, end)
-        quickSort(nums, 0, pivot-1)
-        quickSort(nums, pivot+1, end)
-    }
-}
-// 分区
-func partition(nums []int, start, end int) int {
-    // 选取最后一个元素作为基准pivot
-    p := nums[end]
-    i := start
-    // 最后一个值就是基准所以不用比较
-    for j := start; j < end; j++ {
-        if nums[j] < p {
-            swap(nums, i, j)
-            i++
-        }
-    }
-    // 把基准值换到中间
-    swap(nums, i, end)
-    return i
-}
-// 交换两个元素
-func swap(nums []int, i, j int) {
-    t := nums[i]
-    nums[i] = nums[j]
-    nums[j] = t
-}
+def partition(nums, left, right):
+    if left >= right:
+        return
+
+    pivot_idx = random.randint(left, right)
+    pivot = nums[pivot_idx]
+    
+    nums[right], nums[pivot_idx] = nums[pivot_idx], nums[right]
+            
+    partition_idx = left
+    for i in range(left, right):
+        if nums[i] < pivot:
+            nums[partition_idx], nums[i] = nums[i], nums[partition_idx]
+            partition_idx += 1
+            
+    nums[right], nums[partition_idx] = nums[partition_idx], nums[right]
+
+    partition(nums, partition_idx + 1, right)
+    partition(nums, left, partition_idx - 1)
+
+    return
+
+def quicksort(A):
+    partition(A, 0, len(A) - 1)
+    return A
+
+if __name__ == '__main__':
+    a = [7, 6, 8, 5, 2, 1, 3, 4, 0, 9, 10]
+    print(a)
+    print(quicksort(a))
 ```
 
 ### 归并排序
 
-```go
-func MergeSort(nums []int) []int {
-    return mergeSort(nums)
-}
-func mergeSort(nums []int) []int {
-    if len(nums) <= 1 {
-        return nums
-    }
-    // 分治法：divide 分为两段
-    mid := len(nums) / 2
-    left := mergeSort(nums[:mid])
-    right := mergeSort(nums[mid:])
-    // 合并两段数据
-    result := merge(left, right)
-    return result
-}
-func merge(left, right []int) (result []int) {
-    // 两边数组合并游标
-    l := 0
-    r := 0
-    // 注意不能越界
-    for l < len(left) && r < len(right) {
-        // 谁小合并谁
-        if left[l] > right[r] {
-            result = append(result, right[r])
-            r++
-        } else {
-            result = append(result, left[l])
-            l++
-        }
-    }
-    // 剩余部分合并
-    result = append(result, left[l:]...)
-    result = append(result, right[r:]...)
-    return
-}
+```Python
+def merge(A, B):
+    C = []
+    i, j = 0, 0
+    while i < len(A) and j < len(B):
+        if A[i] <= B[j]:
+            C.append(A[i])
+            i += 1
+        else:
+            C.append(B[j])
+            j += 1
+    
+    if i < len(A):
+        C += A[i:]
+    
+    if j < len(B):
+        C += B[j:]
+    
+    return C
+
+def mergsort(A):
+    n = len(A)
+    if n < 2:
+        return A[:]
+    
+    left = mergsort(A[:n // 2])
+    right = mergsort(A[n // 2:])
+
+    return merge(left, right)
+
+if __name__ == '__main__':
+    a = [7, 6, 8, 5, 2, 1, 3, 4, 0, 9, 10]
+    print(a)
+    print(mergsort(a))
 ```
 
 ### 堆排序
@@ -98,56 +91,108 @@ func merge(left, right []int) (result []int) {
 
 核心代码
 
-```go
-package main
+```Python
+def heap_adjust(A, start=0, end=None):
+    if end is None:
+        end = len(A)
+    
+    while start is not None and start < end // 2:
+        l, r = start * 2 + 1, start * 2 + 2
+        swap = None
 
-func HeapSort(a []int) []int {
-    // 1、无序数组a
-	// 2、将无序数组a构建为一个大根堆
-	for i := len(a)/2 - 1; i >= 0; i-- {
-		sink(a, i, len(a))
-	}
-	// 3、交换a[0]和a[len(a)-1]
-	// 4、然后把前面这段数组继续下沉保持堆结构，如此循环即可
-	for i := len(a) - 1; i >= 1; i-- {
-		// 从后往前填充值
-		swap(a, 0, i)
-		// 前面的长度也减一
-		sink(a, 0, i)
-	}
-	return a
-}
-func sink(a []int, i int, length int) {
-	for {
-		// 左节点索引(从0开始，所以左节点为i*2+1)
-		l := i*2 + 1
-		// 右节点索引
-		r := i*2 + 2
-		// idx保存根、左、右三者之间较大值的索引
-		idx := i
-		// 存在左节点，左节点值较大，则取左节点
-		if l < length && a[l] > a[idx] {
-			idx = l
-		}
-		// 存在右节点，且值较大，取右节点
-		if r < length && a[r] > a[idx] {
-			idx = r
-		}
-		// 如果根节点较大，则不用下沉
-		if idx == i {
-			break
-		}
-		// 如果根节点较小，则交换值，并继续下沉
-		swap(a, i, idx)
-		// 继续下沉idx节点
-		i = idx
-	}
-}
-func swap(a []int, i, j int) {
-	a[i], a[j] = a[j], a[i]
-}
+        if A[l] > A[start]:
+            swap = l
+        if r < end and A[r] > A[start] and (swap is None or A[r] > A[l]):
+            swap = r
 
+        if swap is not None:
+            A[start], A[swap] = A[swap], A[start]
+            
+        start = swap
+    
+    return
+
+def heapsort(A):
+
+    # construct max heap
+    n = len(A)
+    for i in range(n // 2 - 1, -1, -1):
+        heap_adjust(A, i)
+    
+    # sort
+    for i in range(n - 1, 0, -1):
+        A[0], A[i] = A[i], A[0]
+        heap_adjust(A, end=i)
+    
+    return A
+
+# test
+if __name__ == '__main__':
+    a = [7, 6, 8, 5, 2, 1, 3, 4, 0, 9, 10]
+    print(a)
+    print(heapsort(a))
 ```
+
+## 题目
+
+### [kth-largest-element-in-an-array](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+
+- 思路 1: sort 后取第 k 个，最简单直接，复杂度 O(N log N) 代码略
+
+- 思路 2: 使用最小堆，复杂度 O(N log k)
+
+```Python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        # note that in practice there is a more efficient python build-in function heapq.nlargest(k, nums)
+        min_heap = []
+        
+        for num in nums:
+            if len(min_heap) < k:
+                heapq.heappush(min_heap, num)
+            else:
+                if num > min_heap[0]:
+                    heapq.heappushpop(min_heap, num)
+        
+        return min_heap[0]
+```
+
+- 思路 3: [Quick select](https://en.wikipedia.org/wiki/Quickselect)，方式类似于快排，每次 partition 后检查 pivot 是否为第 k 个元素，如果是则直接返回，如果比 k 大，则继续 partition 小于 pivot 的元素，如果比 k 小则继续 partition 大于 pivot 的元素。相较于快排，quick select 每次只需 partition 一侧，因此平均复杂度为 O(N)。
+
+```Python
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        
+        k -= 1 # 0-based index
+        
+        def partition(left, right):
+            pivot_idx = random.randint(left, right)
+            pivot = nums[pivot_idx]
+            
+            nums[right], nums[pivot_idx] = nums[pivot_idx], nums[right]
+            
+            partition_idx = left
+            for i in range(left, right):
+                if nums[i] > pivot:
+                    nums[partition_idx], nums[i] = nums[i], nums[partition_idx]
+                    partition_idx += 1
+            
+            nums[right], nums[partition_idx] = nums[partition_idx], nums[right]
+            
+            return partition_idx
+        
+        left, right = 0, len(nums) - 1
+        while True:
+            partition_idx = partition(left, right)
+            if partition_idx == k:
+                return nums[k]
+            elif partition_idx < k:
+                left = partition_idx + 1
+            else:
+                right = partition_idx - 1
+```
+
+
 
 ## 参考
 

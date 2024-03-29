@@ -44,158 +44,138 @@ void slidingWindow(string s, string t) {
 
 ## 示例
 
-[minimum-window-substring](https://leetcode-cn.com/problems/minimum-window-substring/)
+### [minimum-window-substring](https://leetcode-cn.com/problems/minimum-window-substring/)
 
 > 给你一个字符串 S、一个字符串 T，请在字符串 S 里面找出：包含 T 所有字母的最小子串
 
-```go
-func minWindow(s string, t string) string {
-	// 保存滑动窗口字符集
-	win := make(map[byte]int)
-	// 保存需要的字符集
-	need := make(map[byte]int)
-	for i := 0; i < len(t); i++ {
-		need[t[i]]++
-	}
-	// 窗口
-	left := 0
-	right := 0
-	// match匹配次数
-	match := 0
-	start := 0
-	end := 0
-	min := math.MaxInt64
-	var c byte
-	for right < len(s) {
-		c = s[right]
-		right++
-		// 在需要的字符集里面，添加到窗口字符集里面
-		if need[c] != 0 {
-			win[c]++
-			// 如果当前字符的数量匹配需要的字符的数量，则match值+1
-			if win[c] == need[c] {
-				match++
-			}
-		}
+```Python
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        
+        target = collections.defaultdict(int)
+        window = collections.defaultdict(int)
+        
+        for c in t:
+            target[c] += 1
+            
+        min_size = len(s) + 1
+        min_str = ''
+        
+        l, r, count, num_char = 0, 0, 0, len(target)
+        
+        while r < len(s):
+            c = s[r]
+            r += 1
 
-		// 当所有字符数量都匹配之后，开始缩紧窗口
-		for match == len(need) {
-			// 获取结果
-			if right-left < min {
-				min = right - left
-				start = left
-				end = right
-			}
-			c = s[left]
-			left++
-			// 左指针指向不在需要字符集则直接跳过
-			if need[c] != 0 {
-				// 左指针指向字符数量和需要的字符相等时，右移之后match值就不匹配则减一
-				// 因为win里面的字符数可能比较多，如有10个A，但需要的字符数量可能为3
-				// 所以在压死骆驼的最后一根稻草时，match才减一，这时候才跳出循环
-				if win[c] == need[c] {
-					match--
-				}
-				win[c]--
-			}
-		}
-	}
-	if min == math.MaxInt64 {
-		return ""
-	}
-	return s[start:end]
-}
+            if c in target:
+                window[c] += 1
+                
+                if window[c] == target[c]:
+                    count += 1
+                    
+                    if count == num_char:
+                        while l < r and count == num_char:
+                            c = s[l]
+                            l += 1
+                            
+                            if c in target:
+                                window[c] -= 1
+                                
+                                if window[c] == target[c] - 1:
+                                    count -= 1
+                                    
+                        if min_size > r - l + 1:
+                            min_size = r - l + 1
+                            min_str = s[l - 1:r]
+        
+        return min_str
 ```
 
-[permutation-in-string](https://leetcode-cn.com/problems/permutation-in-string/)
+### [permutation-in-string](https://leetcode-cn.com/problems/permutation-in-string/)
 
 > 给定两个字符串  **s1**  和  **s2**，写一个函数来判断  **s2**  是否包含  **s1 **的排列。
 
-```go
-func checkInclusion(s1 string, s2 string) bool {
-	win := make(map[byte]int)
-	need := make(map[byte]int)
-	for i := 0; i < len(s1); i++ {
-		need[s1[i]]++
-	}
-	left := 0
-	right := 0
-	match := 0
-	for right < len(s2) {
-		c := s2[right]
-		right++
-		if need[c] != 0 {
-			win[c]++
-			if win[c] == need[c] {
-				match++
-			}
-		}
-		// 当窗口长度大于字符串长度，缩紧窗口
-		for right-left >= len(s1) {
-			// 当窗口长度和字符串匹配，并且里面每个字符数量也匹配时，满足条件
-			if match == len(need) {
-				return true
-			}
-			d := s2[left]
-			left++
-			if need[d] != 0 {
-				if win[d] == need[d] {
-					match--
-				}
-				win[d]--
-			}
-		}
-	}
-	return false
-}
+```Python
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        
+        target = collections.defaultdict(int)
+        
+        for c in s1:
+            target[c] += 1
+        
+        r, num_char = 0, len(target)
 
+        while r < len(s2):
+            if s2[r] in target:
+                l, count = r, 0
+                window = collections.defaultdict(int)
+                while r < len(s2):
+                    c = s2[r]
+                    if c not in target:
+                        break
+                    window[c] += 1
+                    if window[c] == target[c]:
+                        count += 1
+                        if count == num_char:
+                            return True
+                    while window[c] > target[c]:
+                        window[s2[l]] -= 1
+                        if window[s2[l]] == target[s2[l]] - 1:
+                            count -= 1
+                        l += 1
+                    r += 1
+            else:
+                r += 1
+        
+        return False
 ```
 
-[find-all-anagrams-in-a-string](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
+### [find-all-anagrams-in-a-string](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/)
 
 > 给定一个字符串  **s **和一个非空字符串  **p**，找到  **s **中所有是  **p **的字母异位词的子串，返回这些子串的起始索引。
 
-```go
-func findAnagrams(s string, p string) []int {
-    win := make(map[byte]int)
-	need := make(map[byte]int)
-	for i := 0; i < len(p); i++ {
-		need[p[i]]++
-	}
-	left := 0
-	right := 0
-	match := 0
-    ans:=make([]int,0)
-	for right < len(s) {
-		c := s[right]
-		right++
-		if need[c] != 0 {
-			win[c]++
-			if win[c] == need[c] {
-				match++
-			}
-		}
-		// 当窗口长度大于字符串长度，缩紧窗口
-		for right-left >= len(p) {
-			// 当窗口长度和字符串匹配，并且里面每个字符数量也匹配时，满足条件
-			if right-left == len(p)&& match == len(need) {
-				ans=append(ans,left)
-			}
-			d := s[left]
-			left++
-			if need[d] != 0 {
-				if win[d] == need[d] {
-					match--
-				}
-				win[d]--
-			}
-		}
-	}
-	return ans
-}
+```Python
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        
+        target = collections.defaultdict(int)
+        
+        for c in p:
+            target[c] += 1
+        
+        r, num_char = 0, len(target)
+        
+        results = []
+        while r < len(s):
+            if s[r] in target:
+                l, count = r, 0
+                window = collections.defaultdict(int)
+                while r < len(s):
+                    c = s[r]
+                    if c not in target:
+                        break
+                    window[c] += 1
+                    if window[c] == target[c]:
+                        count += 1
+                        if count == num_char:
+                            results.append(l)
+                            window[s[l]] -= 1
+                            count -= 1
+                            l += 1
+                    while window[c] > target[c]:
+                        window[s[l]] -= 1
+                        if window[s[l]] == target[s[l]] - 1:
+                            count -= 1
+                        l += 1
+                    r += 1
+            else:
+                r += 1
+        
+        return results
 ```
 
-[longest-substring-without-repeating-characters](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+### [longest-substring-without-repeating-characters](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 
 > 给定一个字符串，请你找出其中不含有重复字符的   最长子串   的长度。
 > 示例  1:
@@ -204,37 +184,20 @@ func findAnagrams(s string, p string) []int {
 > 输出: 3
 > 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 
-```go
-func lengthOfLongestSubstring(s string) int {
-    // 滑动窗口核心点：1、右指针右移 2、根据题意收缩窗口 3、左指针右移更新窗口 4、根据题意计算结果
-    if len(s)==0{
-        return 0
-    }
-    win:=make(map[byte]int)
-    left:=0
-    right:=0
-    ans:=1
-    for right<len(s){
-        c:=s[right]
-        right++
-        win[c]++
-        // 缩小窗口
-        for win[c]>1{
-            d:=s[left]
-            left++
-            win[d]--
-        }
-        // 计算结果
-        ans=max(right-left,ans)
-    }
-    return ans
-}
-func max(a,b int)int{
-    if a>b{
-        return a
-    }
-    return b
-}
+```Python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        
+        last_idx = {}
+        
+        l, max_length = 0, 0
+        for r, c in enumerate(s):
+            if c in last_idx and last_idx[c] >= l:
+                max_length = max(max_length, r - l)
+                l = last_idx[c] + 1
+            last_idx[c] = r
+        
+        return max(max_length, len(s) - l) # note that the last substring is not judged in the loop
 ```
 
 ## 总结
