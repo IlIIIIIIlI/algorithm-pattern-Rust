@@ -1,0 +1,1124 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>动态规划 · JiangMing Gitbook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="author" content="JiangMing">
+        <meta name="identifier" content="000-0-00-000000-0" scheme="ISBN">
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../advanced_algorithm/recursion.html" />
+    
+    
+    <link rel="prev" href="sort.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">入门篇</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../introduction/golang.html">
+            
+                <a href="../introduction/golang.html">
+            
+                    
+                    go 语言入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../introduction/quickstart.html">
+            
+                <a href="../introduction/quickstart.html">
+            
+                    
+                    算法快速入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构篇</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../data_structure/binary_tree.html">
+            
+                <a href="../data_structure/binary_tree.html">
+            
+                    
+                    二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../data_structure/linked_list.html">
+            
+                <a href="../data_structure/linked_list.html">
+            
+                    
+                    链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../data_structure/stack_queue.html">
+            
+                <a href="../data_structure/stack_queue.html">
+            
+                    
+                    栈和队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../data_structure/binary_op.html">
+            
+                <a href="../data_structure/binary_op.html">
+            
+                    
+                    二进制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础算法篇</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="binary_search.html">
+            
+                <a href="binary_search.html">
+            
+                    
+                    二分搜索
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="sort.html">
+            
+                <a href="sort.html">
+            
+                    
+                    排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.3" data-path="dp.html">
+            
+                <a href="dp.html">
+            
+                    
+                    动态规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法思维</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../advanced_algorithm/recursion.html">
+            
+                <a href="../advanced_algorithm/recursion.html">
+            
+                    
+                    递归思维
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../advanced_algorithm/slide_window.html">
+            
+                <a href="../advanced_algorithm/slide_window.html">
+            
+                    
+                    滑动窗口思想
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../advanced_algorithm/binary_search_tree.html">
+            
+                <a href="../advanced_algorithm/binary_search_tree.html">
+            
+                    
+                    二叉搜索树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../advanced_algorithm/backtrack.html">
+            
+                <a href="../advanced_algorithm/backtrack.html">
+            
+                    
+                    回溯法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >动态规划</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="动态规划">动态规划</h1>
+<h2 id="背景">背景</h2>
+<p>先从一道题目开始~</p>
+<p>如题  <a href="https://leetcode-cn.com/problems/triangle/" target="_blank">triangle</a></p>
+<blockquote>
+<p>给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。</p>
+</blockquote>
+<p>例如，给定三角形：</p>
+<pre><code class="lang-text">[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+</code></pre>
+<p>自顶向下的最小路径和为  11（即，2 + 3 + 5 + 1 = 11）。</p>
+<p>使用 DFS（遍历 或者 分治法）</p>
+<p>遍历</p>
+<p><img src="https://img.fuiboom.com/img/dp_triangle.png" alt="image.png"></p>
+<p>分治法</p>
+<p><img src="https://img.fuiboom.com/img/dp_dc.png" alt="image.png"></p>
+<p>优化 DFS，缓存已经被计算的值（称为：记忆化搜索 本质上：动态规划）</p>
+<p><img src="https://img.fuiboom.com/img/dp_memory_search.png" alt="image.png"></p>
+<p>动态规划就是把大问题变成小问题，并解决了小问题重复计算的方法称为动态规划</p>
+<p>动态规划和 DFS 区别</p>
+<ul>
+<li>二叉树 子问题是没有交集，所以大部分二叉树都用递归或者分治法，即 DFS，就可以解决</li>
+<li>像 triangle 这种是有重复走的情况，<strong>子问题是有交集</strong>，所以可以用动态规划来解决</li>
+</ul>
+<p>动态规划，自底向上</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">minimumTotal</span>(<span class="hljs-params">self, triangle: <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]]</span>) -&gt; <span class="hljs-built_in">int</span>:
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(triangle) == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+
+        dp = triangle[-<span class="hljs-number">1</span>].copy()
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(-<span class="hljs-number">2</span>, -<span class="hljs-built_in">len</span>(triangle) - <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(triangle[i])):
+                dp[j] = triangle[i][j] + <span class="hljs-built_in">min</span>(dp[j], dp[j + <span class="hljs-number">1</span>])
+
+        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>]
+</code></pre>
+<p>动态规划，自顶向下</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">minimumTotal</span>(<span class="hljs-params">self, triangle: <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]]</span>) -&gt; <span class="hljs-built_in">int</span>:
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(triangle) == <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+
+        dp = triangle[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> triangle[<span class="hljs-number">1</span>:]:
+            dp_new = [row[<span class="hljs-number">0</span>] + dp[<span class="hljs-number">0</span>]]
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(dp) - <span class="hljs-number">1</span>):
+                dp_new.append(row[i+<span class="hljs-number">1</span>] + <span class="hljs-built_in">min</span>(dp[i], dp[i+<span class="hljs-number">1</span>]))
+            dp_new.append(row[-<span class="hljs-number">1</span>] + dp[-<span class="hljs-number">1</span>])
+            dp = dp_new
+
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(dp)
+</code></pre>
+<h2 id="递归和动规关系">递归和动规关系</h2>
+<p>递归是一种程序的实现方式：函数的自我调用</p>
+<pre><code class="lang-go">Function(x) {
+    ...
+    Funciton(x<span class="hljs-number">-1</span>);
+    ...
+}
+</code></pre>
+<p>动态规划：是一种解决问题的思想，大规模问题的结果，是由小规模问题的结果运算得来的。动态规划可用递归来实现(Memorization Search)</p>
+<h2 id="使用场景">使用场景</h2>
+<p>满足两个条件</p>
+<ul>
+<li>满足以下条件之一<ul>
+<li>求最大/最小值（Maximum/Minimum ）</li>
+<li>求是否可行（Yes/No ）</li>
+<li>求可行个数（Count(*) ）</li>
+</ul>
+</li>
+<li>满足不能排序或者交换（Can not sort / swap ）</li>
+</ul>
+<p>如题：<a href="https://leetcode-cn.com/problems/longest-consecutive-sequence/" target="_blank">longest-consecutive-sequence</a>  位置可以交换，所以不用动态规划</p>
+<h2 id="四点要素">四点要素</h2>
+<ol>
+<li><strong>状态 State</strong><ul>
+<li>灵感，创造力，存储小规模问题的结果</li>
+</ul>
+</li>
+<li>方程 Function<ul>
+<li>状态之间的联系，怎么通过小的状态，来算大的状态</li>
+</ul>
+</li>
+<li>初始化 Intialization<ul>
+<li>最极限的小状态是什么, 起点</li>
+</ul>
+</li>
+<li>答案 Answer<ul>
+<li>最大的那个状态是什么，终点</li>
+</ul>
+</li>
+</ol>
+<h2 id="常见四种类型">常见四种类型</h2>
+<ol>
+<li>Matrix DP (10%)</li>
+<li>Sequence (40%)</li>
+<li>Two Sequences DP (40%)</li>
+<li>Backpack (10%)</li>
+</ol>
+<blockquote>
+<p>注意点</p>
+<ul>
+<li>贪心算法大多题目靠背答案，所以如果能用动态规划就尽量用动规，不用贪心算法</li>
+</ul>
+</blockquote>
+<h2 id="1、矩阵类型（10）">1、矩阵类型（10%）</h2>
+<h3 id="minimum-path-sum"><a href="https://leetcode-cn.com/problems/minimum-path-sum/" target="_blank">minimum-path-sum</a></h3>
+<blockquote>
+<p>给定一个包含非负整数的  <em>m</em> x <em>n</em>  网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
+</blockquote>
+<p>思路：动态规划</p>
+<ol>
+<li><p>state: f(x, y) 从起点走到 (x, y) 的最短路径 </p>
+</li>
+<li><p>function: f(x, y) = min(f(x - 1, y), f(x, y - 1]) + A(x, y)</p>
+</li>
+<li><p>intialize: f(0, 0) = A(0, 0)、f(i, 0) = sum(0,0 -&gt; i,0)、 f(0, i) = sum(0,0 -&gt; 0,i)</p>
+</li>
+<li><p>answer: f(n - 1, m - 1)</p>
+</li>
+<li><p>2D DP -&gt; 1D DP</p>
+</li>
+</ol>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">minPathSum</span>(<span class="hljs-params">self, grid: <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]]</span>) -&gt; <span class="hljs-built_in">int</span>:
+        m, n = <span class="hljs-built_in">len</span>(grid), <span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])
+
+        dp = [<span class="hljs-number">0</span>] * n
+        dp[<span class="hljs-number">0</span>] = grid[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):
+            dp[i] = dp[i-<span class="hljs-number">1</span>] + grid[<span class="hljs-number">0</span>][i]
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, m):
+            dp[<span class="hljs-number">0</span>] += grid[i][<span class="hljs-number">0</span>]
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):
+                dp[j] = grid[i][j] + <span class="hljs-built_in">min</span>(dp[j-<span class="hljs-number">1</span>], dp[j])
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]
+</code></pre>
+<h3 id="unique-paths"><a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank">unique-paths</a></h3>
+<blockquote>
+<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+问总共有多少条不同的路径？</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">uniquePaths</span>(<span class="hljs-params">self, m: <span class="hljs-built_in">int</span>, n: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        <span class="hljs-keyword">if</span> m &lt; n:
+            m, n = n, m
+
+        dp = [<span class="hljs-number">1</span>] * n
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, m):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):
+                dp[j] += dp[j - <span class="hljs-number">1</span>]
+
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]
+</code></pre>
+<h3 id="unique-paths-ii"><a href="https://leetcode-cn.com/problems/unique-paths-ii/" target="_blank">unique-paths-ii</a></h3>
+<blockquote>
+<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+问总共有多少条不同的路径？
+现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">uniquePathsWithObstacles</span>(<span class="hljs-params">self, G: <span class="hljs-type">List</span>[<span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]]</span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        m, n = <span class="hljs-built_in">len</span>(G), <span class="hljs-built_in">len</span>(G[<span class="hljs-number">0</span>])
+
+        dp = [<span class="hljs-number">1</span>] <span class="hljs-keyword">if</span> G[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> [<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):
+            new = dp[i-<span class="hljs-number">1</span>] <span class="hljs-keyword">if</span> G[<span class="hljs-number">0</span>][i] == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>
+            dp.append(new)
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, m):
+            dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> G[i][<span class="hljs-number">0</span>] == <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> dp[<span class="hljs-number">0</span>]
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):
+                dp[j] = dp[j-<span class="hljs-number">1</span>] + dp[j] <span class="hljs-keyword">if</span> G[i][j] == <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>
+
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]
+</code></pre>
+<h2 id="2、序列类型（40）">2、序列类型（40%）</h2>
+<h3 id="climbing-stairs"><a href="https://leetcode-cn.com/problems/climbing-stairs/" target="_blank">climbing-stairs</a></h3>
+<blockquote>
+<p>假设你正在爬楼梯。需要  <em>n</em>  阶你才能到达楼顶。</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">climbStairs</span>(<span class="hljs-params">self, n: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+        <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> n
+
+        step1, step2 = <span class="hljs-number">2</span>, <span class="hljs-number">1</span>
+
+        <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n - <span class="hljs-number">2</span>):
+            step1, step2 = step1 + step2, step1
+
+        <span class="hljs-keyword">return</span> step1
+</code></pre>
+<h3 id="jump-game"><a href="https://leetcode-cn.com/problems/jump-game/" target="_blank">jump-game</a></h3>
+<blockquote>
+<p>给定一个非负整数数组，你最初位于数组的第一个位置。
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+判断你是否能够到达最后一个位置。</p>
+</blockquote>
+<p>解法：直接DP无法得到O(n)的解，考虑间接DP</p>
+<ul>
+<li><p>tail to head</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">canJump</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">bool</span>:
+
+      left = <span class="hljs-built_in">len</span>(nums) - <span class="hljs-number">1</span> <span class="hljs-comment"># most left index that can reach the last index</span>
+
+      <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(nums) - <span class="hljs-number">2</span>, -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>):
+
+          left = i <span class="hljs-keyword">if</span> i + nums[i] &gt;= left <span class="hljs-keyword">else</span> left <span class="hljs-comment"># DP</span>
+
+      <span class="hljs-keyword">return</span> left == <span class="hljs-number">0</span>
+</code></pre>
+</li>
+<li><p>head to tail</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">canJump</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">bool</span>:
+
+      max_pos = nums[<span class="hljs-number">0</span>] <span class="hljs-comment"># furthest index can reach</span>
+
+      <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(nums)):
+          <span class="hljs-keyword">if</span> max_pos &lt; i:
+              <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+          max_pos = <span class="hljs-built_in">max</span>(max_pos, i + nums[i]) <span class="hljs-comment"># DP</span>
+
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="jump-game-ii"><a href="https://leetcode-cn.com/problems/jump-game-ii/" target="_blank">jump-game-ii</a></h3>
+<blockquote>
+<p>给定一个非负整数数组，你最初位于数组的第一个位置。
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+你的目标是使用最少的跳跃次数到达数组的最后一个位置。</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">jump</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        cur_max = <span class="hljs-number">0</span>
+        step_max = <span class="hljs-number">0</span>
+        step = <span class="hljs-number">0</span>
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(nums)):
+
+            <span class="hljs-keyword">if</span> cur_max &lt; i: <span class="hljs-comment"># can&apos;t reach i, don&apos;t have to consider in this problem</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;inf&apos;</span>)
+
+            <span class="hljs-keyword">if</span> step_max &lt; i: <span class="hljs-comment"># can&apos;t reach i in current number of steps</span>
+                step += <span class="hljs-number">1</span>
+                step_max = cur_max
+
+            cur_max = <span class="hljs-built_in">max</span>(cur_max, i + nums[i]) <span class="hljs-comment"># DP</span>
+
+        <span class="hljs-keyword">return</span> min_step
+</code></pre>
+<h3 id="palindrome-partitioning-ii"><a href="https://leetcode-cn.com/problems/palindrome-partitioning-ii/" target="_blank">palindrome-partitioning-ii</a></h3>
+<blockquote>
+<p>给定一个字符串 <em>s</em>，将 <em>s</em> 分割成一些子串，使每个子串都是回文串。
+返回符合要求的最少分割次数。</p>
+</blockquote>
+<ul>
+<li>Why is hard</li>
+</ul>
+<p>仅目标DP, 判断回文时间复杂度高 -&gt; 目标DP + 回文二维DP, 回文DP空间复杂度高 -&gt; 一点trick, 回文DP空间复杂度降为线性</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">minCut</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        dp_min = [<span class="hljs-number">0</span>] * <span class="hljs-built_in">len</span>(s)
+        dp_pal = [<span class="hljs-literal">True</span>] * <span class="hljs-built_in">len</span>(s)
+
+        <span class="hljs-keyword">def</span> <span class="hljs-title function_">isPal</span>(<span class="hljs-params">i, j</span>):
+            dp_pal[i] = (s[i] == s[j] <span class="hljs-keyword">and</span> dp_pal[i+<span class="hljs-number">1</span>])
+            <span class="hljs-keyword">return</span> dp_pal[i]
+
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(s)):
+
+            min_cut = dp_min[j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>
+
+            <span class="hljs-keyword">if</span> isPal(<span class="hljs-number">0</span>, j):
+                min_cut = <span class="hljs-number">0</span>
+
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, j):
+                <span class="hljs-keyword">if</span> isPal(i, j):
+                    min_cut = <span class="hljs-built_in">min</span>(min_cut, dp_min[i - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>)
+
+            dp_min[j] = min_cut
+
+        <span class="hljs-keyword">return</span> dp_min[-<span class="hljs-number">1</span>]
+</code></pre>
+<h3 id="longest-increasing-subsequence"><a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/" target="_blank">longest-increasing-subsequence</a></h3>
+<blockquote>
+<p>给定一个无序的整数数组，找到其中最长上升子序列的长度。</p>
+</blockquote>
+<ul>
+<li><p>DP(i) 等于以第i个数结尾的最长上升子序列的长度，容易想但不是最优</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">lengthOfLIS</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:
+
+      <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(nums) == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+
+      dp_max = [<span class="hljs-number">1</span>] * <span class="hljs-built_in">len</span>(nums)
+
+      <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(nums)):
+          <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(j):
+              <span class="hljs-keyword">if</span> nums[j] &gt; nums[i]:
+                  dp_max[j] = <span class="hljs-built_in">max</span>(dp_max[j], dp_max[i] + <span class="hljs-number">1</span>)
+
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(dp_max)
+</code></pre>
+</li>
+<li><p>最优算法使用 greedy + binary search，比较tricky</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">lengthOfLIS</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:
+
+      <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(nums) == <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+
+      seq = [nums[<span class="hljs-number">0</span>]]
+
+      <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(nums)):
+          ins = bisect.bisect_left(seq, nums[i])
+          <span class="hljs-keyword">if</span> ins == <span class="hljs-built_in">len</span>(seq):
+              seq.append(nums[i])
+          <span class="hljs-keyword">else</span>:
+              seq[ins] = nums[i]
+
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(seq)
+</code></pre>
+</li>
+</ul>
+<h3 id="word-break"><a href="https://leetcode-cn.com/problems/word-break/" target="_blank">word-break</a></h3>
+<blockquote>
+<p>给定一个<strong>非空</strong>字符串  <em>s</em>  和一个包含<strong>非空</strong>单词列表的字典  <em>wordDict</em>，判定  <em>s</em>  是否可以被空格拆分为一个或多个在字典中出现的单词。</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">wordBreak</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span>, wordDict: <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]</span>) -&gt; <span class="hljs-built_in">bool</span>:
+
+        dp = [<span class="hljs-literal">False</span>] * (<span class="hljs-built_in">len</span>(s) + <span class="hljs-number">1</span>)
+        dp[-<span class="hljs-number">1</span>] = <span class="hljs-literal">True</span>
+
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(s)):
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(j+<span class="hljs-number">1</span>):
+                <span class="hljs-keyword">if</span> dp[i - <span class="hljs-number">1</span>] <span class="hljs-keyword">and</span> s[i:j+<span class="hljs-number">1</span>] <span class="hljs-keyword">in</span> wordDict:
+                    dp[j] = <span class="hljs-literal">True</span>
+                    <span class="hljs-keyword">break</span>
+
+        <span class="hljs-keyword">return</span> dp[<span class="hljs-built_in">len</span>(s) - <span class="hljs-number">1</span>]
+</code></pre>
+<p>小结</p>
+<p>常见处理方式是给 0 位置占位，这样处理问题时一视同仁，初始化则在原来基础上 length+1，返回结果 f[n]</p>
+<ul>
+<li>状态可以为前 i 个</li>
+<li>初始化 length+1</li>
+<li>取值 index=i-1</li>
+<li>返回值：f[n]或者 f[m][n]</li>
+</ul>
+<h2 id="two-sequences-dp（40）">Two Sequences DP（40%）</h2>
+<h3 id="longest-common-subsequence"><a href="https://leetcode-cn.com/problems/longest-common-subsequence/" target="_blank">longest-common-subsequence</a></h3>
+<blockquote>
+<p>给定两个字符串  text1 和  text2，返回这两个字符串的最长公共子序列。
+一个字符串的   子序列   是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。
+例如，&quot;ace&quot; 是 &quot;abcde&quot; 的子序列，但 &quot;aec&quot; 不是 &quot;abcde&quot; 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。</p>
+</blockquote>
+<ul>
+<li>二维DP若只与当前行和上一行有关，可将空间复杂度降到线性</li>
+</ul>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">longestCommonSubsequence</span>(<span class="hljs-params">self, t1: <span class="hljs-built_in">str</span>, t2: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        <span class="hljs-keyword">if</span> t1 == <span class="hljs-string">&apos;&apos;</span> <span class="hljs-keyword">or</span> t2 == <span class="hljs-string">&apos;&apos;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+
+        <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(t1) &lt; <span class="hljs-built_in">len</span>(t2):
+            t1, t2 = t2, t1
+
+        dp = [<span class="hljs-built_in">int</span>(t2[<span class="hljs-number">0</span>] == t1[<span class="hljs-number">0</span>])] * <span class="hljs-built_in">len</span>(t2) <span class="hljs-comment"># previous row</span>
+        dp_new = [<span class="hljs-number">0</span>] * <span class="hljs-built_in">len</span>(t2) <span class="hljs-comment"># current row</span>
+
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(t2)):
+            dp[j] = <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> t2[j] == t1[<span class="hljs-number">0</span>] <span class="hljs-keyword">else</span> dp[j - <span class="hljs-number">1</span>]
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(t1)):
+            dp_new[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> dp[<span class="hljs-number">0</span>] == <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> t2[<span class="hljs-number">0</span>] == t1[i] <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(t2)):
+                <span class="hljs-keyword">if</span> t2[j] != t1[i]:
+                    dp_new[j] = <span class="hljs-built_in">max</span>(dp[j], dp_new[j - <span class="hljs-number">1</span>])
+                <span class="hljs-keyword">else</span>:
+                    dp_new[j] = dp[j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>
+            dp, dp_new = dp_new, dp
+
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]
+</code></pre>
+<h3 id="edit-distance"><a href="https://leetcode-cn.com/problems/edit-distance/" target="_blank">edit-distance</a></h3>
+<blockquote>
+<p>给你两个单词  word1 和  word2，请你计算出将  word1  转换成  word2 所使用的最少操作数<br>你可以对一个单词进行如下三种操作：
+插入一个字符
+删除一个字符
+替换一个字符</p>
+</blockquote>
+<p>思路：和上题很类似，相等则不需要操作，否则取删除、插入、替换最小操作次数的值+1</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">minDistance</span>(<span class="hljs-params">self, w1: <span class="hljs-built_in">str</span>, w2: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        <span class="hljs-keyword">if</span> w1 == <span class="hljs-string">&apos;&apos;</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(w2)
+        <span class="hljs-keyword">if</span> w2 == <span class="hljs-string">&apos;&apos;</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(w1)
+
+        m, n = <span class="hljs-built_in">len</span>(w1), <span class="hljs-built_in">len</span>(w2)
+        <span class="hljs-keyword">if</span> m &lt; n:
+            w1, w2, m, n = w2, w1, n, m
+
+        dp = [<span class="hljs-built_in">int</span>(w1[<span class="hljs-number">0</span>] != w2[<span class="hljs-number">0</span>])] * n
+        dp_new = [<span class="hljs-number">0</span>] * n
+
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):
+            dp[j] = dp[j - <span class="hljs-number">1</span>] + <span class="hljs-built_in">int</span>(w2[j] != w1[<span class="hljs-number">0</span>] <span class="hljs-keyword">or</span> dp[j - <span class="hljs-number">1</span>] != j)
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, m):
+            dp_new[<span class="hljs-number">0</span>] = dp[<span class="hljs-number">0</span>] + <span class="hljs-built_in">int</span>(w2[<span class="hljs-number">0</span>] != w1[i] <span class="hljs-keyword">or</span> dp[<span class="hljs-number">0</span>] != i)
+
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n):
+                dp_new[j] = <span class="hljs-built_in">min</span>(dp[j - <span class="hljs-number">1</span>] + <span class="hljs-built_in">int</span>(w2[j] != w1[i]), dp[j] + <span class="hljs-number">1</span>, dp_new[j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>)
+
+            dp, dp_new = dp_new, dp
+
+
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]
+</code></pre>
+<p>说明</p>
+<blockquote>
+<p>另外一种做法：MAXLEN(a,b)-LCS(a,b)</p>
+</blockquote>
+<h2 id="零钱和背包（10）">零钱和背包（10%）</h2>
+<h3 id="coin-change"><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank">coin-change</a></h3>
+<blockquote>
+<p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回  -1。</p>
+</blockquote>
+<p>思路：和其他 DP 不太一样，i 表示钱或者容量</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">coinChange</span>(<span class="hljs-params">self, coins: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>], amount: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        dp = [<span class="hljs-number">0</span>] * (amount + <span class="hljs-number">1</span>)
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(dp)):
+            dp[i] = <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;inf&apos;</span>)
+
+            <span class="hljs-keyword">for</span> coin <span class="hljs-keyword">in</span> coins:
+                <span class="hljs-keyword">if</span> i &gt;= coin <span class="hljs-keyword">and</span> dp[i - coin] + <span class="hljs-number">1</span> &lt; dp[i]:
+                    dp[i] = dp[i - coin] + <span class="hljs-number">1</span>
+
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> dp[amount] == <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;inf&apos;</span>) <span class="hljs-keyword">else</span> dp[amount]
+</code></pre>
+<h3 id="backpack"><a href="https://www.lintcode.com/problem/backpack/description" target="_blank">backpack</a></h3>
+<blockquote>
+<p>在 n 个物品中挑选若干物品装入背包，最多能装多满？假设背包的大小为 m，每个物品的大小为 A[i]</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">backPack</span>(<span class="hljs-params">self, m, A</span>):
+
+        n = <span class="hljs-built_in">len</span>(A)
+
+        dp = [<span class="hljs-number">0</span>] * (m + <span class="hljs-number">1</span>)
+        dp_new = [<span class="hljs-number">0</span>] * (m + <span class="hljs-number">1</span>)
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, m + <span class="hljs-number">1</span>):
+                use_Ai = <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> j - A[i] &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> dp[j - A[i]] + A[i]
+                dp_new[j] = <span class="hljs-built_in">max</span>(dp[j], use_Ai)
+
+            dp, dp_new = dp_new, dp
+
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]
+</code></pre>
+<h3 id="backpack-ii"><a href="https://www.lintcode.com/problem/backpack-ii/description" target="_blank">backpack-ii</a></h3>
+<blockquote>
+<p>有 <code>n</code> 个物品和一个大小为 <code>m</code> 的背包. 给定数组 <code>A</code> 表示每个物品的大小和数组 <code>V</code> 表示每个物品的价值.
+问最多能装入背包的总价值是多大?</p>
+</blockquote>
+<p>思路：dp(i, j) 为前 i 个物品，装入 j 背包的最大价值</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">backPackII</span>(<span class="hljs-params">self, m, A, V</span>):
+
+        n = <span class="hljs-built_in">len</span>(A)
+
+        dp = [<span class="hljs-number">0</span>] * (m + <span class="hljs-number">1</span>)
+        dp_new = [<span class="hljs-number">0</span>] * (m + <span class="hljs-number">1</span>)
+
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, m + <span class="hljs-number">1</span>):
+                use_Ai = <span class="hljs-number">0</span> <span class="hljs-keyword">if</span> j - A[i] &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">else</span> dp[j - A[i]] + V[i] <span class="hljs-comment"># previous problem is a special case of this problem that V(i) = A(i)</span>
+                dp_new[j] = <span class="hljs-built_in">max</span>(dp[j], use_Ai)
+
+            dp, dp_new = dp_new, dp
+
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>]
+</code></pre>
+<h2 id="补充">补充</h2>
+<h3 id="maximum-product-subarray"><a href="https://leetcode-cn.com/problems/maximum-product-subarray/" target="_blank">maximum-product-subarray</a></h3>
+<blockquote>
+<p>最大乘积子串</p>
+</blockquote>
+<p>处理负数情况稍微有点复杂，注意需要同时 DP 正数乘积和负数乘积</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">maxProduct</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        max_product = <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;-inf&apos;</span>)
+
+        dp_pos, dp_neg = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+
+        <span class="hljs-keyword">for</span> num <span class="hljs-keyword">in</span> nums:
+            <span class="hljs-keyword">if</span> num &gt; <span class="hljs-number">0</span>:
+                dp_pos, dp_neg = <span class="hljs-built_in">max</span>(num, num * dp_pos), dp_neg * num
+            <span class="hljs-keyword">else</span>:
+                dp_pos, dp_neg = dp_neg * num, <span class="hljs-built_in">min</span>(num, dp_pos * num)
+
+            <span class="hljs-keyword">if</span> dp_pos != <span class="hljs-number">0</span>:
+                max_product = <span class="hljs-built_in">max</span>(max_product, dp_pos)
+            <span class="hljs-keyword">elif</span> dp_neg != <span class="hljs-number">0</span>:
+                max_product = <span class="hljs-built_in">max</span>(max_product, dp_neg)
+            <span class="hljs-keyword">else</span>:
+                max_product = <span class="hljs-built_in">max</span>(max_product, <span class="hljs-number">0</span>)
+
+        <span class="hljs-keyword">return</span> max_product
+</code></pre>
+<h3 id="decode-ways"><a href="https://leetcode-cn.com/problems/decode-ways/" target="_blank">decode-ways</a></h3>
+<blockquote>
+<p>1 到 26 分别对应 a 到 z，给定输入数字串，问总共有多少种译码方法</p>
+</blockquote>
+<p>常规 DP 题，注意处理edge case即可</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">numDecodings</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        <span class="hljs-keyword">def</span> <span class="hljs-title function_">valid_2</span>(<span class="hljs-params">i</span>):
+            <span class="hljs-keyword">if</span> i &lt; <span class="hljs-number">1</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+            num = <span class="hljs-built_in">int</span>(s[i-<span class="hljs-number">1</span>:i+<span class="hljs-number">1</span>])
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">int</span>(num &gt; <span class="hljs-number">9</span> <span class="hljs-keyword">and</span> num &lt; <span class="hljs-number">27</span>)
+
+        dp_1, dp_2 = <span class="hljs-number">1</span>, <span class="hljs-number">0</span>
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(s)):
+            dp_1, dp_2 = dp_1 * <span class="hljs-built_in">int</span>(s[i] != <span class="hljs-string">&apos;0&apos;</span>) + dp_2 * valid_2(i), dp_1
+
+        <span class="hljs-keyword">return</span> dp_1
+</code></pre>
+<h3 id="best-time-to-buy-and-sell-stock-with-cooldown"><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" target="_blank">best-time-to-buy-and-sell-stock-with-cooldown</a></h3>
+<blockquote>
+<p>给定股票每天的价格，每天可以买入卖出，买入后必须卖出才可以进行下一次购买，卖出后一天不可以购买，问可以获得的最大利润</p>
+</blockquote>
+<p>经典的维特比译码类问题，找到状态空间和状态转移关系即可</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">maxProfit</span>(<span class="hljs-params">self, prices: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        buy, buy_then_nothing, sell, sell_then_nothing = <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;-inf&apos;</span>), <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;-inf&apos;</span>), <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;-inf&apos;</span>), <span class="hljs-number">0</span>
+
+        <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> prices:
+            buy, buy_then_nothing, sell, sell_then_nothing = sell_then_nothing - p, <span class="hljs-built_in">max</span>(buy, buy_then_nothing), <span class="hljs-built_in">max</span>(buy, buy_then_nothing) + p, <span class="hljs-built_in">max</span>(sell, sell_then_nothing)
+
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(buy, buy_then_nothing, sell, sell_then_nothing)
+</code></pre>
+<h3 id="word-break-ii"><a href="https://leetcode-cn.com/problems/word-break-ii/" target="_blank">word-break-ii</a></h3>
+<blockquote>
+<p>给定字符串和可选的单词列表，求字符串所有的分割方式</p>
+</blockquote>
+<p>思路：此题 DP 解法容易想但并不是好做法，因为和 word-break 不同，此题需要返回所有可行分割而不是找到一组就可以。这里使用 个人推荐 backtrack with memoization。</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">wordBreak</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span>, wordDict: <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]</span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-built_in">str</span>]:
+
+        n = <span class="hljs-built_in">len</span>(s)
+        result = []
+        mem = collections.defaultdict(<span class="hljs-built_in">list</span>)
+        wordDict = <span class="hljs-built_in">set</span>(wordDict)
+
+        <span class="hljs-keyword">def</span> <span class="hljs-title function_">backtrack</span>(<span class="hljs-params">first=<span class="hljs-number">0</span>, route=[]</span>):
+            <span class="hljs-keyword">if</span> first == n:
+                result.append(<span class="hljs-string">&apos; &apos;</span>.join(route))
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+            <span class="hljs-keyword">if</span> first <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> mem:
+                <span class="hljs-keyword">for</span> next_first <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(first + <span class="hljs-number">1</span>, n + <span class="hljs-number">1</span>):
+                    <span class="hljs-keyword">if</span> s[first:next_first] <span class="hljs-keyword">in</span> wordDict:
+                        route.append(s[first:next_first])
+                        <span class="hljs-keyword">if</span> backtrack(next_first, route):
+                            mem[first].append(next_first)
+                        route.pop()
+                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(mem[first]) &gt; <span class="hljs-number">0</span>:
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+            <span class="hljs-keyword">elif</span> <span class="hljs-built_in">len</span>(mem[first]) &gt; <span class="hljs-number">0</span>:
+                <span class="hljs-keyword">for</span> next_first <span class="hljs-keyword">in</span> mem[first]:
+                    route.append(s[first:next_first])
+                    backtrack(next_first)
+                    route.pop()
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+
+        backtrack()
+        <span class="hljs-keyword">return</span> result
+</code></pre>
+<h3 id="burst-balloons"><a href="https://leetcode-cn.com/problems/burst-balloons/" target="_blank">burst-balloons</a></h3>
+<blockquote>
+<p>n 个气球排成一行，每个气球上有一个分数，每次戳爆一个气球得分为该气球分数和相邻两气球分数的乘积，求最大得分</p>
+</blockquote>
+<p>此题主要难点是构造 DP 的状态，过程为逆着气球戳爆的顺序</p>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">maxCoins</span>(<span class="hljs-params">self, nums: <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]</span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        n = <span class="hljs-built_in">len</span>(nums)
+        nums.append(<span class="hljs-number">1</span>)
+        dp = [[<span class="hljs-number">0</span>] * (n + <span class="hljs-number">1</span>) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n + <span class="hljs-number">1</span>)]
+
+        <span class="hljs-keyword">for</span> dist <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, n + <span class="hljs-number">2</span>):
+            <span class="hljs-keyword">for</span> left <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(-<span class="hljs-number">1</span>, n - dist + <span class="hljs-number">1</span>):
+                right = left + dist
+                max_coin = <span class="hljs-built_in">float</span>(<span class="hljs-string">&apos;-inf&apos;</span>)
+                left_right = nums[left] * nums[right]
+                <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(left + <span class="hljs-number">1</span>, right):
+                    max_coin = <span class="hljs-built_in">max</span>(max_coin, left_right * nums[j] + dp[left][j] + dp[j][right])
+                dp[left][right] = max_coin
+        nums.pop()
+        <span class="hljs-keyword">return</span> dp[-<span class="hljs-number">1</span>][n]
+</code></pre>
+<h2 id="练习">练习</h2>
+<p>Matrix DP (10%)</p>
+<ul>
+<li>[ ] <a href="https://leetcode-cn.com/problems/triangle/" target="_blank">triangle</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/minimum-path-sum/" target="_blank">minimum-path-sum</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank">unique-paths</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/unique-paths-ii/" target="_blank">unique-paths-ii</a></li>
+</ul>
+<p>Sequence (40%)</p>
+<ul>
+<li>[ ] <a href="https://leetcode-cn.com/problems/climbing-stairs/" target="_blank">climbing-stairs</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/jump-game/" target="_blank">jump-game</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/jump-game-ii/" target="_blank">jump-game-ii</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/palindrome-partitioning-ii/" target="_blank">palindrome-partitioning-ii</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/" target="_blank">longest-increasing-subsequence</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/word-break/" target="_blank">word-break</a></li>
+</ul>
+<p>Two Sequences DP (40%)</p>
+<ul>
+<li>[ ] <a href="https://leetcode-cn.com/problems/longest-common-subsequence/" target="_blank">longest-common-subsequence</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/edit-distance/" target="_blank">edit-distance</a></li>
+</ul>
+<p>Backpack &amp; Coin Change (10%)</p>
+<ul>
+<li>[ ] <a href="https://leetcode-cn.com/problems/coin-change/" target="_blank">coin-change</a></li>
+<li>[ ] <a href="https://www.lintcode.com/problem/backpack/description" target="_blank">backpack</a></li>
+<li>[ ] <a href="https://www.lintcode.com/problem/backpack-ii/description" target="_blank">backpack-ii</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="sort.html" class="navigation navigation-prev " aria-label="Previous page: 排序算法">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../advanced_algorithm/recursion.html" class="navigation navigation-next " aria-label="Next page: 递归思维">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"动态规划","level":"3.3","depth":1,"next":{"title":"递归思维","level":"4.1","depth":1,"path":"advanced_algorithm/recursion.md","ref":"advanced_algorithm/recursion.md","articles":[]},"previous":{"title":"排序算法","level":"3.2","depth":1,"path":"basic_algorithm/sort.md","ref":"basic_algorithm/sort.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"JiangMing","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"000-0-00-000000-0","variables":{},"title":"JiangMing Gitbook","language":"zh-hans","gitbook":">=3.2.3","description":"This is gitbook","direction":"ltr"},"file":{"path":"basic_algorithm/dp.md","mtime":"2020-09-02T16:40:11.000Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-03-30T04:52:35.739Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

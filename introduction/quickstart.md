@@ -15,41 +15,48 @@
 
 - 思路：核心点遍历给定字符串字符，判断以当前字符开头字符串是否等于目标字符串
 
-```Python
-class Solution:
-    def strStr(self, haystack: str, needle: str) -> int:
-        L, n = len(needle), len(haystack)
-
-        for start in range(n - L + 1):
-            if haystack[start:start + L] == needle:
-                return start
-        return -1
-```
-
 ```Rust
 impl Solution {
+    // Solution 的公共方法，符合问题预期的接口。
+    // 它接受 String 类型的拥有所有权的 haystack 和 needle。
+    // 返回类型为 i32，按照问题的规范。
     pub fn str_str(haystack: String, needle: String) -> i32 {
-        if needle.is_empty() {
-            return 0;
-        }
-        let (haystack_len, needle_len) = (haystack.len(), needle.len());
-        if haystack_len < needle_len {
-            return -1;
-        }
-        for i in 0..=haystack_len - needle_len {
-            if &haystack[i..i + needle_len] == needle {
-                return i as i32;
-            }
-        }
-        -1
+        // 在公共方法内部，将拥有所有权的 String 参数转换为字符串切片 (&str)
+        // 通过借用进行转换。这个转换是必要的，因为内部逻辑（在 str_str_impl 中）
+        // 是基于字符串切片操作的，而不是拥有所有权的 String。
+        // 这种方法避免了获取函数参数的所有权，
+        // 允许我们使用引用来操作。
+        Solution::str_str_impl(&haystack, &needle)
+    }
+
+    // 一个私有辅助函数，执行实际的计算。
+    // 这个函数被设计为使用字符串切片 (&str)，这对于只读操作如字符串搜索来说更为高效。
+    fn str_str_impl(haystack: &str, needle: &str) -> i32 {
+        // 检查 needle 是否为空字符串。
+        // 根据问题定义，如果 needle 为空，
+        // 函数应返回 0，表示在 haystack 的开始位置就匹配到了。
+        if needle.is_empty() { return 0; }
+
+        // 使用 find 方法搜索 haystack 中 needle 的第一次出现。
+        // find 方法返回一个 Option<usize> 类型：
+        // - Some(index) 如果找到了 needle，其中 index 是起始位置。
+        // - None 如果没有找到 needle。
+        // 然后使用 Option 上的 map_or 方法来处理这两种情况：
+        // - 如果是 Some(index)，则转换为 index 的 i32 类型。
+        // - 如果是 None（没有找到 needle），则返回 -1。
+        haystack.find(needle).map_or(-1, |v| v as i32)
     }
 }
 ```
 
 需要注意点
 
-- 循环时，i 不需要到 len-1
-- 如果找到目标字符串，len(needle) == j
+- 通过在接口边界将 String 转换为 &str，代码高效处理字符串数据，无需不必要的克隆或所有权转移。。
+- 错误处理：
+  - Rust 通过 Result 和 Option 枚举强制进行错误处理，这与 Python 的异常处理机制不同。
+  - 需要习惯使用 match 或 if let 表达式来处理这些枚举的值。
+- 不可变性：
+  - Rust 中的变量默认是不可变的。如果你需要修改变量的值，需要在声明时使用 mut 关键字。
 
 ### [示例 2：subsets](https://leetcode-cn.com/problems/subsets/)
 
@@ -71,29 +78,42 @@ func backtrack(选择列表,路径):
 
 - 通过不停的选择，撤销选择，来穷尽所有可能性，最后将满足条件的结果返回。答案代码：
 
-```Python
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+```Rust
+impl Solution {
+    // 定义一个公共的静态方法 `subsets`，该方法接收一个 Vec<i32> 类型的参数 `nums`，
+    // 表示一组整数，返回一个 Vec<Vec<i32>> 类型，表示所有可能的子集合。
+    pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        // 定义一个动态数组 `result` 用于存储最终的所有子集结果。
+        let mut result = Vec::new();
 
-        n = len(nums)
-        result = []
+        // 定义一个内部的递归函数 `backtrack` 用于回溯搜索子集。
+        // 它接受一个整数数组的切片 `nums`、一个起始索引 `start`、一个当前路径的可变引用 `route`，
+        // 以及一个最终结果的可变引用 `result`。
+        fn backtrack(nums: &[i32], start: usize, route: &mut Vec<i32>, result: &mut Vec<Vec<i32>>) {
+            // 将当前路径的一个克隆添加到结果集中。
+            // 这一步确保了在每次递归调用中，当前探索的路径都会被记录下来。
+            result.push(route.clone());
 
-        def backtrack(start, k, route=[]):
-            if len(route) == k:
-                result.append(route.copy())
-                return
+            // 从 `start` 索引开始遍历 `nums` 数组。
+            for i in start..nums.len() {
+                // 将当前数字添加到路径中。
+                route.push(nums[i]);
+                // 递归调用 `backtrack` 函数，i + 1 保证下一次调用时，搜索的范围向前推进了一步。
+                backtrack(nums, i + 1, route, result);
+                // 回溯：将路径中最后一个数字移除，探索不包含当前数字的其他路径。
+                route.pop();
+            }
+        }
 
-            for i in range(start, n):
-                route.append(nums[i])
-                backtrack(i + 1, k)
-                route.pop()
+        // 定义一个动态数组 `route` 用于记录当前搜索的路径。
+        let mut route = Vec::new();
+        // 调用 `backtrack` 函数开始搜索，从索引 0 和空路径开始。
+        backtrack(&nums, 0, &mut route, &mut result);
 
-            return
-
-        for k in range(n + 1):
-            backtrack(0, k)
-
-        return result
+        // 返回最终收集到的所有子集结果。
+        result
+    }
+}
 ```
 
 说明：后面会深入讲解几个典型的回溯算法问题，如果当前不太了解可以暂时先跳过

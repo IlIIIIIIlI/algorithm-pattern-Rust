@@ -1,0 +1,10 @@
+{
+  "root": ".",
+  "author": "JiangMing",
+  "title": "JiangMing Gitbook",
+  "language": "zh-hans",
+  "description": "This is gitbook",
+  "isbn": "000-0-00-000000-0",
+  "direction": "ltr",
+  "gitbook": ">=3.2.3"
+}

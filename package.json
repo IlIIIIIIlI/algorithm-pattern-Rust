@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "graceful-fs": "^4.2.11"
+  },
+  "name": "algorithm-pattern-rust",
+  "description": "![来刷题了](https://img.fuiboom.com/img/title.png)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@honkit/honkit-plugin-theme": "^5.1.4",
+    "honkit": "^5.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IlIIIIIIlI/algorithm-pattern-Rust.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IlIIIIIIlI/algorithm-pattern-Rust/issues"
+  },
+  "homepage": "https://github.com/IlIIIIIIlI/algorithm-pattern-Rust#readme"
+}

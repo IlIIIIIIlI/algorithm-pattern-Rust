@@ -1,0 +1,670 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <title>滑动窗口思想 · JiangMing Gitbook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="author" content="JiangMing">
+        <meta name="identifier" content="000-0-00-000000-0" scheme="ISBN">
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="binary_search_tree.html" />
+    
+    
+    <link rel="prev" href="recursion.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">入门篇</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../introduction/golang.html">
+            
+                <a href="../introduction/golang.html">
+            
+                    
+                    go 语言入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../introduction/quickstart.html">
+            
+                <a href="../introduction/quickstart.html">
+            
+                    
+                    算法快速入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">数据结构篇</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../data_structure/binary_tree.html">
+            
+                <a href="../data_structure/binary_tree.html">
+            
+                    
+                    二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../data_structure/linked_list.html">
+            
+                <a href="../data_structure/linked_list.html">
+            
+                    
+                    链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../data_structure/stack_queue.html">
+            
+                <a href="../data_structure/stack_queue.html">
+            
+                    
+                    栈和队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../data_structure/binary_op.html">
+            
+                <a href="../data_structure/binary_op.html">
+            
+                    
+                    二进制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">基础算法篇</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../basic_algorithm/binary_search.html">
+            
+                <a href="../basic_algorithm/binary_search.html">
+            
+                    
+                    二分搜索
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../basic_algorithm/sort.html">
+            
+                <a href="../basic_algorithm/sort.html">
+            
+                    
+                    排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../basic_algorithm/dp.html">
+            
+                <a href="../basic_algorithm/dp.html">
+            
+                    
+                    动态规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">算法思维</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="recursion.html">
+            
+                <a href="recursion.html">
+            
+                    
+                    递归思维
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.2" data-path="slide_window.html">
+            
+                <a href="slide_window.html">
+            
+                    
+                    滑动窗口思想
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="binary_search_tree.html">
+            
+                <a href="binary_search_tree.html">
+            
+                    
+                    二叉搜索树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="backtrack.html">
+            
+                <a href="backtrack.html">
+            
+                    
+                    回溯法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            本书使用 HonKit 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >滑动窗口思想</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="滑动窗口">滑动窗口</h1>
+<h2 id="模板">模板</h2>
+<pre><code class="lang-cpp"><span class="hljs-comment">/* 滑动窗口算法框架 */</span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">slidingWindow</span><span class="hljs-params">(string s, string t)</span> </span>{
+    unordered_map&lt;<span class="hljs-type">char</span>, <span class="hljs-type">int</span>&gt; need, window;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : t) need[c]++;
+
+    <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> valid = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (right &lt; s.<span class="hljs-built_in">size</span>()) {
+        <span class="hljs-comment">// c 是将移入窗口的字符</span>
+        <span class="hljs-type">char</span> c = s[right];
+        <span class="hljs-comment">// 右移窗口</span>
+        right++;
+        <span class="hljs-comment">// 进行窗口内数据的一系列更新</span>
+        ...
+
+        <span class="hljs-comment">/*** debug 输出的位置 ***/</span>
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;window: [%d, %d)\n&quot;</span>, left, right);
+        <span class="hljs-comment">/********************/</span>
+
+        <span class="hljs-comment">// 判断左侧窗口是否要收缩</span>
+        <span class="hljs-keyword">while</span> (window needs shrink) {
+            <span class="hljs-comment">// d 是将移出窗口的字符</span>
+            <span class="hljs-type">char</span> d = s[left];
+            <span class="hljs-comment">// 左移窗口</span>
+            left++;
+            <span class="hljs-comment">// 进行窗口内数据的一系列更新</span>
+            ...
+        }
+    }
+}
+</code></pre>
+<p>需要变化的地方</p>
+<ul>
+<li>1、右指针右移之后窗口数据更新</li>
+<li>2、判断窗口是否要收缩</li>
+<li>3、左指针右移之后窗口数据更新</li>
+<li>4、根据题意计算结果</li>
+</ul>
+<h2 id="示例">示例</h2>
+<h3 id="minimum-window-substring"><a href="https://leetcode-cn.com/problems/minimum-window-substring/" target="_blank">minimum-window-substring</a></h3>
+<blockquote>
+<p>给你一个字符串 S、一个字符串 T，请在字符串 S 里面找出：包含 T 所有字母的最小子串</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">minWindow</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span>, t: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">str</span>:
+
+        target = collections.defaultdict(<span class="hljs-built_in">int</span>)
+        window = collections.defaultdict(<span class="hljs-built_in">int</span>)
+
+        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> t:
+            target[c] += <span class="hljs-number">1</span>
+
+        min_size = <span class="hljs-built_in">len</span>(s) + <span class="hljs-number">1</span>
+        min_str = <span class="hljs-string">&apos;&apos;</span>
+
+        l, r, count, num_char = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(target)
+
+        <span class="hljs-keyword">while</span> r &lt; <span class="hljs-built_in">len</span>(s):
+            c = s[r]
+            r += <span class="hljs-number">1</span>
+
+            <span class="hljs-keyword">if</span> c <span class="hljs-keyword">in</span> target:
+                window[c] += <span class="hljs-number">1</span>
+
+                <span class="hljs-keyword">if</span> window[c] == target[c]:
+                    count += <span class="hljs-number">1</span>
+
+                    <span class="hljs-keyword">if</span> count == num_char:
+                        <span class="hljs-keyword">while</span> l &lt; r <span class="hljs-keyword">and</span> count == num_char:
+                            c = s[l]
+                            l += <span class="hljs-number">1</span>
+
+                            <span class="hljs-keyword">if</span> c <span class="hljs-keyword">in</span> target:
+                                window[c] -= <span class="hljs-number">1</span>
+
+                                <span class="hljs-keyword">if</span> window[c] == target[c] - <span class="hljs-number">1</span>:
+                                    count -= <span class="hljs-number">1</span>
+
+                        <span class="hljs-keyword">if</span> min_size &gt; r - l + <span class="hljs-number">1</span>:
+                            min_size = r - l + <span class="hljs-number">1</span>
+                            min_str = s[l - <span class="hljs-number">1</span>:r]
+
+        <span class="hljs-keyword">return</span> min_str
+</code></pre>
+<h3 id="permutation-in-string"><a href="https://leetcode-cn.com/problems/permutation-in-string/" target="_blank">permutation-in-string</a></h3>
+<blockquote>
+<p>给定两个字符串  <strong>s1</strong>  和  <strong>s2</strong>，写一个函数来判断  <strong>s2</strong>  是否包含  <strong>s1 </strong>的排列。</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">checkInclusion</span>(<span class="hljs-params">self, s1: <span class="hljs-built_in">str</span>, s2: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">bool</span>:
+
+        target = collections.defaultdict(<span class="hljs-built_in">int</span>)
+
+        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> s1:
+            target[c] += <span class="hljs-number">1</span>
+
+        r, num_char = <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(target)
+
+        <span class="hljs-keyword">while</span> r &lt; <span class="hljs-built_in">len</span>(s2):
+            <span class="hljs-keyword">if</span> s2[r] <span class="hljs-keyword">in</span> target:
+                l, count = r, <span class="hljs-number">0</span>
+                window = collections.defaultdict(<span class="hljs-built_in">int</span>)
+                <span class="hljs-keyword">while</span> r &lt; <span class="hljs-built_in">len</span>(s2):
+                    c = s2[r]
+                    <span class="hljs-keyword">if</span> c <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> target:
+                        <span class="hljs-keyword">break</span>
+                    window[c] += <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">if</span> window[c] == target[c]:
+                        count += <span class="hljs-number">1</span>
+                        <span class="hljs-keyword">if</span> count == num_char:
+                            <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
+                    <span class="hljs-keyword">while</span> window[c] &gt; target[c]:
+                        window[s2[l]] -= <span class="hljs-number">1</span>
+                        <span class="hljs-keyword">if</span> window[s2[l]] == target[s2[l]] - <span class="hljs-number">1</span>:
+                            count -= <span class="hljs-number">1</span>
+                        l += <span class="hljs-number">1</span>
+                    r += <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                r += <span class="hljs-number">1</span>
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+</code></pre>
+<h3 id="find-all-anagrams-in-a-string"><a href="https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/" target="_blank">find-all-anagrams-in-a-string</a></h3>
+<blockquote>
+<p>给定一个字符串  <strong>s </strong>和一个非空字符串  <strong>p</strong>，找到  <strong>s </strong>中所有是  <strong>p </strong>的字母异位词的子串，返回这些子串的起始索引。</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">findAnagrams</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span>, p: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-type">List</span>[<span class="hljs-built_in">int</span>]:
+
+        target = collections.defaultdict(<span class="hljs-built_in">int</span>)
+
+        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> p:
+            target[c] += <span class="hljs-number">1</span>
+
+        r, num_char = <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(target)
+
+        results = []
+        <span class="hljs-keyword">while</span> r &lt; <span class="hljs-built_in">len</span>(s):
+            <span class="hljs-keyword">if</span> s[r] <span class="hljs-keyword">in</span> target:
+                l, count = r, <span class="hljs-number">0</span>
+                window = collections.defaultdict(<span class="hljs-built_in">int</span>)
+                <span class="hljs-keyword">while</span> r &lt; <span class="hljs-built_in">len</span>(s):
+                    c = s[r]
+                    <span class="hljs-keyword">if</span> c <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> target:
+                        <span class="hljs-keyword">break</span>
+                    window[c] += <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">if</span> window[c] == target[c]:
+                        count += <span class="hljs-number">1</span>
+                        <span class="hljs-keyword">if</span> count == num_char:
+                            results.append(l)
+                            window[s[l]] -= <span class="hljs-number">1</span>
+                            count -= <span class="hljs-number">1</span>
+                            l += <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">while</span> window[c] &gt; target[c]:
+                        window[s[l]] -= <span class="hljs-number">1</span>
+                        <span class="hljs-keyword">if</span> window[s[l]] == target[s[l]] - <span class="hljs-number">1</span>:
+                            count -= <span class="hljs-number">1</span>
+                        l += <span class="hljs-number">1</span>
+                    r += <span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                r += <span class="hljs-number">1</span>
+
+        <span class="hljs-keyword">return</span> results
+</code></pre>
+<h3 id="longest-substring-without-repeating-characters"><a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" target="_blank">longest-substring-without-repeating-characters</a></h3>
+<blockquote>
+<p>给定一个字符串，请你找出其中不含有重复字符的   最长子串   的长度。
+示例  1:</p>
+<p>输入: &quot;abcabcbb&quot;
+输出: 3
+解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。</p>
+</blockquote>
+<pre><code class="lang-Python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">lengthOfLongestSubstring</span>(<span class="hljs-params">self, s: <span class="hljs-built_in">str</span></span>) -&gt; <span class="hljs-built_in">int</span>:
+
+        last_idx = {}
+
+        l, max_length = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+        <span class="hljs-keyword">for</span> r, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(s):
+            <span class="hljs-keyword">if</span> c <span class="hljs-keyword">in</span> last_idx <span class="hljs-keyword">and</span> last_idx[c] &gt;= l:
+                max_length = <span class="hljs-built_in">max</span>(max_length, r - l)
+                l = last_idx[c] + <span class="hljs-number">1</span>
+            last_idx[c] = r
+
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(max_length, <span class="hljs-built_in">len</span>(s) - l) <span class="hljs-comment"># note that the last substring is not judged in the loop</span>
+</code></pre>
+<h2 id="总结">总结</h2>
+<ul>
+<li>和双指针题目类似，更像双指针的升级版，滑动窗口核心点是维护一个窗口集，根据窗口集来进行处理</li>
+<li>核心步骤<ul>
+<li>right 右移</li>
+<li>收缩</li>
+<li>left 右移</li>
+<li>求结果</li>
+</ul>
+</li>
+</ul>
+<h2 id="练习">练习</h2>
+<ul>
+<li>[ ] <a href="https://leetcode-cn.com/problems/minimum-window-substring/" target="_blank">minimum-window-substring</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/permutation-in-string/" target="_blank">permutation-in-string</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/" target="_blank">find-all-anagrams-in-a-string</a></li>
+<li>[ ] <a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" target="_blank">longest-substring-without-repeating-characters</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="recursion.html" class="navigation navigation-prev " aria-label="Previous page: 递归思维">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="binary_search_tree.html" class="navigation navigation-next " aria-label="Next page: 二叉搜索树">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"滑动窗口思想","level":"4.2","depth":1,"next":{"title":"二叉搜索树","level":"4.3","depth":1,"path":"advanced_algorithm/binary_search_tree.md","ref":"advanced_algorithm/binary_search_tree.md","articles":[]},"previous":{"title":"递归思维","level":"4.1","depth":1,"path":"advanced_algorithm/recursion.md","ref":"advanced_algorithm/recursion.md","articles":[]},"dir":"ltr"},"config":{"plugins":["livereload"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"JiangMing","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"000-0-00-000000-0","variables":{},"title":"JiangMing Gitbook","language":"zh-hans","gitbook":">=3.2.3","description":"This is gitbook","direction":"ltr"},"file":{"path":"advanced_algorithm/slide_window.md","mtime":"2020-09-02T16:40:11.000Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-03-30T04:52:35.739Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
