@@ -17,8 +17,7 @@
 ## 核心内容
 
 ### 入门篇 🐶
-
-- [go 语言入门](./introduction/golang.md)
+- [Rust 语言入门](./introduction/rust.md)
 - [算法快速入门](./introduction/quickstart.md)
 
 ### 数据结构篇 🐰
