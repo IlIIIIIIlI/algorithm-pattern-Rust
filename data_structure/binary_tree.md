@@ -4,9 +4,9 @@
 
 ### 二叉树遍历
 
-**前序遍历**：**先访问根节点**，再前序遍历左子树，再前序遍历右子树
-**中序遍历**：先中序遍历左子树，**再访问根节点**，再中序遍历右子树
-**后序遍历**：先后序遍历左子树，再后序遍历右子树，**再访问根节点**
+- 先序遍历：首先访问**<u>根</u>**，再先序遍历左（右）子树，最后先序遍历右（左）子树。
+- 中序遍历：首先中序遍历左（右）子树，再访问<u>**根**</u>，最后中序遍历右（左）子树。
+- 后序遍历：首先后序遍历左（右）子树，再后序遍历右（左）子树，最后访问**<u>根</u>**。
 
 注意点
 
@@ -17,116 +17,196 @@
 
 - 递归实现二叉树遍历非常简单，不同顺序区别仅在于访问父结点顺序
 
-```Python
-def preorder_rec(root):
-    if root is None:
-        return
-    visit(root)
-    preorder_rec(root.left)
-    preorder_rec(root.right)
-    return
+二叉树的每个节点由键 key、值 value 与左右子树 left/right 组成，这里我们把节点声明为一个泛型结构。
 
-def inorder_rec(root):
-    if root is None:
-        return
-    inorder_rec(root.left)
-    visit(root)
-    inorder_rec(root.right)
-    return
+```rust
+use std::rc::Rc;
+use std::cell::RefCell;
 
-def postorder_rec(root):
-    if root is None:
-        return
-    postorder_rec(root.left)
-    postorder_rec(root.right)
-    visit(root)
-    return
+// 定义二叉树节点结构体
+#[derive(Debug, PartialEq, Eq)]
+pub struct TreeNode {
+    pub val: i32,
+    pub left: Option<Rc<RefCell<TreeNode>>>,
+    pub right: Option<Rc<RefCell<TreeNode>>>,
+}
+
+// 访问节点的函数，这里仅仅是打印节点值
+fn visit(node: &TreeNode) {
+    println!("{}", node.val);
+}
+
+// 前序遍历
+fn preorder_rec(root: Option<Rc<RefCell<TreeNode>>>) {
+    if let Some(node) = root {
+        let node = node.borrow();
+        visit(&node); // 访问当前节点
+        preorder_rec(node.left.clone()); // 递归遍历左子树
+        preorder_rec(node.right.clone()); // 递归遍历右子树
+    }
+}
+
+// 中序遍历
+fn inorder_rec(root: Option<Rc<RefCell<TreeNode>>>) {
+    if let Some(node) = root {
+        let node = node.borrow();
+        inorder_rec(node.left.clone()); // 递归遍历左子树
+        visit(&node); // 访问当前节点
+        inorder_rec(node.right.clone()); // 递归遍历右子树
+    }
+}
+
+// 后序遍历
+fn postorder_rec(root: Option<Rc<RefCell<TreeNode>>>) {
+    if let Some(node) = root {
+        let node = node.borrow();
+        postorder_rec(node.left.clone()); // 递归遍历左子树
+        postorder_rec(node.right.clone()); // 递归遍历右子树
+        visit(&node); // 访问当前节点
+    }
+}
 ```
 
 #### [前序非递归](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
 
-- 本质上是图的DFS的一个特例，因此可以用栈来实现
+- 本质上是图的 DFS 的一个特例，因此可以用栈来实现
 
-```Python
-class Solution:
-    def preorderTraversal(self, root: TreeNode) -> List[int]:
-        
-        preorder = []
-        if root is None:
-            return preorder
-        
-        s = [root]
-        while len(s) > 0:
-            node = s.pop()
-            preorder.append(node.val)
-            if node.right is not None:
-                s.append(node.right)
-            if node.left is not None:
-                s.append(node.left)
-        
-        return preorder
+```rust
+use std::rc::Rc;
+use std::cell::RefCell;
+
+impl Solution {
+    // 前序遍历的迭代实现
+    pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut ans = Vec::new(); // 用于存放遍历结果
+        let mut stack = vec![root]; // 栈用于存放接下来需要访问的节点
+
+        // 当栈不为空时，循环继续
+        while let Some(node_option) = stack.pop() {
+            // if let检查node_option是否包含一个值。如果是，它会将这个值绑定到node_ref变量，并执行if块中的代码。
+            if let Some(node_ref) = node_option {
+                let node = node_ref.borrow(); // 获取节点的不可变引用
+                ans.push(node.val); // 访问当前节点
+                // 如果有右子树，先压入右子树（保证左子树先处理）
+                if node.right.is_some() {
+                    stack.push(node.right.clone());
+                }
+                // 如果有左子树，再压入左子树
+                if node.left.is_some() {
+                    stack.push(node.left.clone());
+                }
+            }
+        }
+        ans
+    }
+}
+
 ```
+
+使用`Option<Rc<RefCell<TreeNode>>>`处理节点的所有权和可变性，确保在遍历过程中能够安全、有效地访问和修改树结构。
+
+我们没有使用`.take()`来移除节点的所有权，因为这样做会改变原始树的结构。相反，我们使用`.clone()`来复制`Option`内部的`Rc`指针，这样就可以保持原始树不变，同时避免了使用`borrow_mut`造成的潜在可变借用冲突。
 
 #### [中序非递归](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
 
-```Python
-class Solution:
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
-        s, inorder = [], []
-        node = root
-        while len(s) > 0 or node is not None:
-            if node is not None:
-                s.append(node)
-                node = node.left
-            else:
-                node = s.pop()
-                inorder.append(node.val)
-                node = node.right
-        return inorder
+```rust
+impl Solution {
+    // 中序遍历的迭代实现
+    pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut s = Vec::new(); // 栈用于存放接下来需要访问的节点
+        let mut inorder = Vec::new(); // 用于存放遍历结果
+        let mut node = root; // 当前访问的节点
+
+        // 当栈不为空或者当前节点不为空时，循环继续
+        // 从栈中弹出一个节点时，必须首先确保它的所有左子树都已经被访问过了。
+        while s.len() > 0 || node.is_some() {
+            if let Some(node_ref) = node {
+                s.push(node_ref.clone()); // 将当前节点压入栈中
+                node = node_ref.borrow().left.clone(); // 移动到左子树
+            } else {
+                node = s.pop(); // 从栈中取出下一个节点
+                if let Some(node_ref) = node {
+                    let node_borrowed = node_ref.borrow();
+                    inorder.push(node_borrowed.val); // 访问当前节点
+                    node = node_borrowed.right.clone(); // 移动到右子树
+                }
+            }
+        }
+
+        inorder
+    }
+}
 ```
 
 #### [后序非递归](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
 
-```Python
-class Solution:
-    def postorderTraversal(self, root: TreeNode) -> List[int]:
+```rust
+impl Solution {
+    // 后序遍历的迭代实现
+    pub fn postorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut ans = Vec::new(); // 用于存放遍历结果
+        let mut stack = Vec::new(); // 栈用于存放节点
+        let (mut node, mut last_visit) = (root.clone(), None);
 
-        s, postorder = [], []
-        node, last_visit = root, None
-        
-        while len(s) > 0 or node is not None:
-            if node is not None:
-                s.append(node)
-                node = node.left
-            else:
-                peek = s[-1]
-                if peek.right is not None and last_visit != peek.right:
-                    node = peek.right
-                else:
-                    last_visit = s.pop()
-                    postorder.append(last_visit.val)
-        
-        
-        return postorder
+        while stack.len() > 0 || node.is_some() {
+            while let Some(node_ref) = node {
+                stack.push(node_ref.clone());
+                node = node_ref.borrow().left.clone();
+            }
+            // 查看栈顶节点而不弹出
+            let node_ref = stack.last().unwrap().clone();
+            let node_borrowed = node_ref.borrow();
+            // 如果右子树存在且未被访问，或者没有右子树，访问当前节点
+            if node_borrowed.right.is_none() || Some(node_borrowed.right.as_ref().unwrap().clone()) == last_visit {
+                ans.push(node_borrowed.val);
+                last_visit = stack.pop();
+                node = None; // 避免再次进入左子树的循环
+            } else {
+                node = node_borrowed.right.clone();
+            }
+        }
+        ans
+    }
+}
 ```
 
 注意点
 
-- 核心就是：根节点必须在右节点弹出之后，再弹出
+- **进入左子树**:
+  - 使用`while let`循环沿左子树深入，将途径的每个节点推入栈中，直到遇到空节点。
+- **访问节点的条件**:
+  - 从栈中查看顶部节点(`peek`)，但不立即弹出，以便确定是否可以访问该节点或需转向右子树。
+  - 判断是否可以访问当前节点（即是否已经访问了该节点的右子树），依赖于最近一次访问的节点(`last_visit`)。
+- **处理`.as_ref().unwrap()`**:
+  - `.as_ref()`将`Option<Rc<RefCell<TreeNode>>>`转换为`Option<&Rc<RefCell<TreeNode>>>`，使其可以被借用而不是获取所有权。
+  - `.unwrap()`尝试从`Option`类型中取出值。如果是`Some`，返回内部值；如果是`None`，则会导致 panic。这里使用`.unwrap()`，因为通过逻辑保证了此处`Option`不会是`None`。
+- **访问和转移逻辑**:
+  - 如果当前节点的右子树为`None`或最近访问的节点是当前节点的右子树，则访问当前节点，并将其从栈中移除。
+  - 访问节点后，将`last_visit`更新为当前节点，以指示最近访问过此节点。
+  - 如果当前节点的右子树存在且未被访问，则将当前节点更新为其右子树，准备下一轮遍历。
+- **注意点**:
+  - 通过`clone()`复制`Rc`指针，以在不转移所有权的情况下共享访问。这是管理树结构中节点的常见 Rust 做法。
 
-DFS 深度搜索-从下向上（分治法）
+#### DFS 深度搜索-从下向上（分治法）
 
 ```Python
-class Solution:
-    def preorderTraversal(self, root: TreeNode) -> List[int]:
-        
-        if root is None:
-            return []
-        
-        left_result = self.preorderTraversal(root.left)
-        right_result = self.preorderTraversal(root.right)
-        
-        return [root.val] + left_result + right_result
+impl Solution {
+    // 前序遍历的递归实现
+    pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        // 检查根节点是否为空
+        if let Some(node_ref) = root {
+            let node = node_ref.borrow();
+            let val = node.val; // 访问当前节点
+            let left_result = Self::preorder_traversal(node.left.clone()); // 递归遍历左子树
+            let right_result = Self::preorder_traversal(node.right.clone()); // 递归遍历右子树
+
+            // 将当前节点的值与左右子树的遍历结果合并
+            std::iter::once(val).chain(left_result.into_iter()).chain(right_result.into_iter()).collect()
+        } else {
+            Vec::new() // 如果根节点为空，返回空向量
+        }
+    }
+}
 ```
 
 注意点：
@@ -136,29 +216,45 @@ class Solution:
 #### [BFS 层次遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
 
 ```Python
-class Solution:
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
-        
-        levels = []
-        if root is None:
-            return levels
-        
-        bfs = collections.deque([root])
-        
-        while len(bfs) > 0:
-            levels.append([])
-            
-            level_size = len(bfs)
-            for _ in range(level_size):
-                node = bfs.popleft()
-                levels[-1].append(node.val)
-                
-                if node.left is not None:
-                    bfs.append(node.left)
-                if node.right is not None:
-                    bfs.append(node.right)
-        
-        return levels
+impl Solution {
+    // 层次遍历的实现
+    pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
+        let mut levels = Vec::new(); // 存储最终的层序遍历结果
+        if root.is_none() {
+            // 如果根节点为空，则直接返回空的结果集
+            return levels;
+        }
+
+        let mut bfs = VecDeque::new(); // 使用VecDeque作为BFS的队列
+        bfs.push_back(root.unwrap()); // 将根节点加入队列
+
+        // 当队列不为空时，继续遍历
+        while bfs.len() > 0 {
+            let level_size = bfs.len(); // 记录当前层的节点数
+            let mut current_level = Vec::new(); // 用于存储当前层的节点值
+
+            for _ in 0..level_size {
+                // 对当前层的每个节点进行遍历
+                let node = bfs.pop_front().unwrap(); // 从队列中取出节点
+                let node_borrowed = node.borrow(); // 借用节点，访问其值和子节点
+                current_level.push(node_borrowed.val); // 将节点值加入当前层结果集
+
+                // 如果左子节点存在，则加入队列等待后续遍历
+                if let Some(left) = node_borrowed.left.clone() {
+                    bfs.push_back(left);
+                }
+                // 如果右子节点存在，同样加入队列
+                if let Some(right) = node_borrowed.right.clone() {
+                    bfs.push_back(right);
+                }
+            }
+
+            // 将当前层的结果加入到最终结果集中
+            levels.push(current_level);
+        }
+        levels // 返回层序遍历的结果
+    }
+}
 ```
 
 ### 分治法应用
@@ -186,38 +282,67 @@ class Solution:
 - 思路 1：分治法
 
 ```Python
-class Solution:
-    def maxDepth(self, root: TreeNode) -> int:
-        
-        if root is None:
-            return 0
-        
-        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+impl Solution {
+    // 计算二叉树的最大深度
+    pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        match root {
+            // 如果当前节点为空，返回深度为0
+            None => 0,
+            // 如果当前节点非空
+            Some(node) => {
+                // 递归计算左子树的最大深度
+                let left_depth = Solution::max_depth(node.borrow().left.clone());
+                // 递归计算右子树的最大深度
+                let right_depth = Solution::max_depth(node.borrow().right.clone());
+                // 当前节点的深度为左右子树深度的最大值加1
+                1 + std::cmp::max(left_depth, right_depth)
+            },
+        }
+    }
+}
 ```
+
+通过`std::cmp::max(left_depth, right_depth)`来比较左右子树的深度并取较大值。
 
 - 思路 2：层序遍历
 
 ```Python
-class Solution:
-    def maxDepth(self, root: TreeNode) -> List[List[int]]:
-        
-        depth = 0
-        if root is None:
-            return depth
-        
-        bfs = collections.deque([root])
-        
-        while len(bfs) > 0:
-            depth += 1
-            level_size = len(bfs)
-            for _ in range(level_size):
-                node = bfs.popleft()
-                if node.left is not None:
-                    bfs.append(node.left)
-                if node.right is not None:
-                    bfs.append(node.right)
-        
-        return depth
+impl Solution {
+    // 计算二叉树的最大深度
+    pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        if root.is_none() {
+            // 如果根节点为空，深度为0
+            return 0;
+        }
+
+        let mut bfs = VecDeque::new(); // 使用VecDeque作为队列进行广度优先搜索
+        bfs.push_back(root.unwrap()); // 将根节点加入队列
+        let mut depth = 0; // 初始化深度为0
+
+        while bfs.len() > 0 {
+            // 开始新的一层，深度加1
+            depth += 1;
+            let level_size = bfs.len(); // 当前层的节点数量
+
+            for _ in 0..level_size {
+                // 遍历当前层的每个节点
+                let node = bfs.pop_front().unwrap();
+                let node_borrowed = node.borrow();
+
+                // 如果左子节点存在，加入队列
+                if let Some(left) = node_borrowed.left.clone() {
+                    bfs.push_back(left);
+                }
+                // 如果右子节点存在，加入队列
+                if let Some(right) = node_borrowed.right.clone() {
+                    bfs.push_back(right);
+                }
+            }
+        }
+
+        depth // 返回树的最大深度
+    }
+}
 ```
 
 ### [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
@@ -227,56 +352,93 @@ class Solution:
 - 思路 1：分治法，左边平衡 && 右边平衡 && 左右两边高度 <= 1，
 
 ```Python
-class Solution:
-    def isBalanced(self, root: TreeNode) -> bool:
- 
-        def depth(root):
-            
-            if root is None:
-                return 0, True
-            
-            dl, bl = depth(root.left)
-            dr, br = depth(root.right)
-            
-            return max(dl, dr) + 1, bl and br and abs(dl - dr) < 2
-        
-        _, out = depth(root)
-        
-        return out
+impl Solution {
+    // 检查二叉树是否平衡
+    pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        // 定义一个辅助函数来计算树的深度，同时判断是否平衡
+        fn depth(root: Option<Rc<RefCell<TreeNode>>>) -> (i32, bool) {
+            match root {
+                None => (0, true),
+                Some(node) => {
+                    let node_ref = node.borrow();
+                    // 递归地计算左子树的深度和是否平衡
+                    let (dl, bl) = depth(node_ref.left.clone());
+                    // 递归地计算右子树的深度和是否平衡
+                    let (dr, br) = depth(node_ref.right.clone());
+
+                    // 当前树的深度为左右子树深度的最大值加1
+                    let depth = std::cmp::max(dl, dr) + 1;
+                    // 当前树是否平衡取决于左右子树是否都平衡，以及左右子树的深度差是否不超过1
+                    let balanced = bl && br && (dl - dr).abs() < 2;
+
+                    (depth, balanced)
+                }
+            }
+        }
+
+        // 使用辅助函数计算根节点的深度和是否平衡
+        let (_, is_balanced) = depth(root);
+        // 返回整棵树是否平衡
+        is_balanced
+    }
+}
 ```
 
-- 思路 2：使用后序遍历实现分治法的迭代版本
+Leetcode 一个相当精妙的解法[Tab Liu](https://leetcode.cn/u/tab-liu/)
 
-```Python
-class Solution:
-    def isBalanced(self, root: TreeNode) -> bool:
+自底向上的递归解法。通过递归地计算每个节点的左右子树高度，我们可以在同一过程中判断子树是否平衡。若任一子树不平衡，即其高度差超过 1，函数立即返回-1，标识不平衡，从而避免进一步无谓的计算。
 
-        s = [[TreeNode(), -1, -1]]
-        node, last = root, None
-        while len(s) > 1 or node is not None:
-            if node is not None:
-                s.append([node, -1, -1])
-                node = node.left
-                if node is None:
-                    s[-1][1] = 0
-            else:
-                peek = s[-1][0]
-                if peek.right is not None and last != peek.right:
-                    node = peek.right
-                else:
-                    if peek.right is None:
-                        s[-1][2] = 0
-                    last, dl, dr = s.pop()
-                    if abs(dl - dr) > 1:
-                        return False
-                    d = max(dl, dr) + 1
-                    if s[-1][1] == -1:
-                        s[-1][1] = d
-                    else:
-                        s[-1][2] = d
-        
-        return True
+```rust
+use std::rc::Rc;
+use std::cell::RefCell;
+impl Solution {
+    fn heigh(node: Rc<RefCell<TreeNode>>) -> i32 {
+        // 如果节点为叶子节点，返回高度1
+        if node.borrow().left.is_none() && node.borrow().right.is_none() {
+            return 1;
+        }
+
+        // 递归计算左子树的高度，如果左子树不平衡，则直接返回-1
+        let l = if let Some(left) = &node.borrow().left {
+            Self::heigh(left.clone())
+        } else {
+            0 // 如果左子节点不存在，高度为0
+        };
+        if l == -1 { // 如果左子树不平衡，提前结束
+            return -1;
+        }
+
+        // 递归计算右子树的高度，同样，如果右子树不平衡，则直接返回-1
+        let r = if let Some(right) = &node.borrow().right {
+            Self::heigh(Rc::clone(right))
+        } else {
+            0 // 如果右子节点不存在，高度为0
+        };
+        if r == -1 { // 如果右子树不平衡，提前结束
+            return -1;
+        }
+
+        // 检查当前节点的左右子树的高度差，如果大于1，说明不平衡，返回-1
+        if (l - r).abs() > 1 {
+            return -1;
+        }
+
+        // 如果当前节点平衡，返回当前节点的高度，即左右子树高度的最大值加1
+        l.max(r) + 1
+    }
+
+    // 检查二叉树是否平衡的公开接口
+    pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        match root {
+            Some(node) => Solution::heigh(node) != -1, // 如果高度不为-1，则树平衡
+            None => true, // 空树默认为平衡
+        }
+    }
+}
+
 ```
+
+TODO: 31/3
 
 ### [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
 
@@ -287,20 +449,20 @@ class Solution:
 ```Python
 class Solution:
     def maxPathSum(self, root: TreeNode) -> int:
-        
+
         self.maxPath = float('-inf')
-        
+
         def largest_path_ends_at(node):
             if node is None:
                 return float('-inf')
-            
+
             e_l = largest_path_ends_at(node.left)
             e_r = largest_path_ends_at(node.right)
-            
+
             self.maxPath = max(self.maxPath, node.val + max(0, e_l) + max(0, e_r), e_l, e_r)
-            
+
             return node.val + max(e_l, e_r, 0)
-        
+
         largest_path_ends_at(root)
         return self.maxPath
 ```
@@ -314,16 +476,16 @@ class Solution:
 ```Python
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        
+
         if root is None:
             return None
-        
+
         if root == p or root == q:
             return root
-        
+
         left = self.lowestCommonAncestor(root.left, p, q)
         right = self.lowestCommonAncestor(root.right, p, q)
-        
+
         if left is not None and right is not None:
             return root
         elif left is not None:
@@ -340,23 +502,23 @@ class Solution:
 
 > 给定一个二叉树，返回其节点值的锯齿形层次遍历。Z 字形遍历
 
-- 思路：在BFS迭代模板上改用双端队列控制输出顺序
+- 思路：在 BFS 迭代模板上改用双端队列控制输出顺序
 
 ```Python
 class Solution:
     def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
-        
+
         levels = []
         if root is None:
             return levels
-        
+
         s = collections.deque([root])
 
         start_from_left = True
         while len(s) > 0:
             levels.append([])
             level_size = len(s)
-            
+
             if start_from_left:
                 for _ in range(level_size):
                     node = s.popleft()
@@ -373,10 +535,10 @@ class Solution:
                         s.appendleft(node.right)
                     if node.left is not None:
                         s.appendleft(node.left)
-            
+
             start_from_left = not start_from_left
-            
-        
+
+
         return levels
 ```
 
@@ -393,11 +555,11 @@ class Solution:
 ```Python
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        
+
         if root is None: return True
-        
+
         def valid_min_max(node):
-            
+
             isValid = True
             if node.left is not None:
                 l_isValid, l_min, l_max = valid_min_max(node.left)
@@ -411,9 +573,9 @@ class Solution:
             else:
                 r_isValid, r_max = True, node.val
 
-                
+
             return l_isValid and r_isValid and isValid, l_min, r_max
-        
+
         return valid_min_max(root)[0]
 ```
 
@@ -422,10 +584,10 @@ class Solution:
 ```Python
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        
+
         if root is None:
             return True
-        
+
         s = [(root, float('-inf'), float('inf'))]
         while len(s) > 0:
             node, low, up = s.pop()
@@ -449,10 +611,10 @@ class Solution:
 ```Python
 class Solution:
     def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
-        
+
         if root is None:
             return TreeNode(val)
-        
+
         node = root
         while True:
             if val > node.val:
@@ -477,8 +639,8 @@ class Solution:
 
 ## 练习
 
-- [ ] [maximum-depth-of-binary-tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
-- [ ] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
+- [x] [maximum-depth-of-binary-tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+- [x] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
 - [ ] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
 - [ ] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 - [ ] [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)

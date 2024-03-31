@@ -15,7 +15,7 @@
 
 - 思路：核心点遍历给定字符串字符，判断以当前字符开头字符串是否等于目标字符串
 
-```Rust
+```rust
 impl Solution {
     // Solution 的公共方法，符合问题预期的接口。
     // 它接受 String 类型的拥有所有权的 haystack 和 needle。
@@ -78,7 +78,7 @@ func backtrack(选择列表,路径):
 
 - 通过不停的选择，撤销选择，来穷尽所有可能性，最后将满足条件的结果返回。答案代码：
 
-```Rust
+```rust
 impl Solution {
     // 定义一个公共的静态方法 `subsets`，该方法接收一个 Vec<i32> 类型的参数 `nums`，
     // 表示一组整数，返回一个 Vec<Vec<i32>> 类型，表示所有可能的子集合。
