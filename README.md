@@ -17,6 +17,7 @@
 ## 核心内容
 
 ### 入门篇 🐶
+
 - [Rust 语言入门](./introduction/rust.md)
 - [算法快速入门](./introduction/quickstart.md)
 
@@ -94,15 +95,15 @@
 
 完成计划之后，可以提交 Pull requests，在下面添加自己的项目仓库，完成自己的算法模板打卡呀~
 
-| 完成 | 用户                                              | 项目地址                                                            |
-| ---- | ------------------------------------------------- | ------------------------------------------------------------------- |
-| ✅   | [easyui](https://github.com/easyui/) | [algorithm-pattern-swift(Swift 实现)](https://github.com/easyui/algorithm-pattern-swift),[在线文档 Gitbook](https://zyj.gitbook.io/algorithm-pattern-swift/) |
-| ✅   | [wardseptember](https://github.com/wardseptember) | [notes(Java 实现)](https://github.com/wardseptember/notes)          |
-| ✅   | [dashidhy](https://github.com/dashidhy) | [algorithm-pattern-python(Python 实现)](https://github.com/dashidhy/algorithm-pattern-python) |
-| ✅   | [binzi56](https://github.com/binzi56) | [algorithm-pattern-c(c++ 实现)](https://github.com/binzi56/algorithm-pattern-c) |
-| ✅   | [lvseouren](https://github.com/lvseouren) | [algorithm-study-record(c++ 实现)](https://github.com/lvseouren/algorithm-study-record) |
-| ✅   | [chienmy](https://github.com/chienmy) | [algorithm-pattern-java(Java 实现)](https://github.com/chienmy/algorithm-pattern-java), [在线文档 Gitbook](https://chienmy.gitbook.io/algorithm-pattern-java/) |
-| ✅ | [ligecarryme](https://github.com/ligecarryme) | [algorithm-pattern-JavaScript(JS+TS实现)](https://github.com/ligecarryme/algorithm-pattern-JavaScript) |
-| ✅ | [Esdeath](https://github.com/Esdeath) | [algorithm-pattern-dart(dart实现)](https://github.com/Esdeath/algorithm-pattern-dart),[在线文档 Gitbook](https://ayaseeri.gitbook.io/algorithm-pattern-dart/) |
-| ✅ | [longpi1](https://github.com/longpi1) | [algorithm-pattern-golang(golang实现)](https://github.com/longpi1/algorithm-pattern)
-| ✅ | [tpxxn](https://github.com/tpxxn) | [algorithm-pattern-CSharp(C# 实现)](https://github.com/tpxxn/algorithm-pattern-CSharp)
+| 完成 | 用户                                              | 项目地址                                                                                                                                                       |
+| ---- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅   | [easyui](https://github.com/easyui/)              | [algorithm-pattern-swift(Swift 实现)](https://github.com/easyui/algorithm-pattern-swift),[在线文档 Gitbook](https://zyj.gitbook.io/algorithm-pattern-swift/)   |
+| ✅   | [wardseptember](https://github.com/wardseptember) | [notes(Java 实现)](https://github.com/wardseptember/notes)                                                                                                     |
+| ✅   | [dashidhy](https://github.com/dashidhy)           | [algorithm-pattern-python(Python 实现)](https://github.com/dashidhy/algorithm-pattern-python)                                                                  |
+| ✅   | [binzi56](https://github.com/binzi56)             | [algorithm-pattern-c(c++ 实现)](https://github.com/binzi56/algorithm-pattern-c)                                                                                |
+| ✅   | [lvseouren](https://github.com/lvseouren)         | [algorithm-study-record(c++ 实现)](https://github.com/lvseouren/algorithm-study-record)                                                                        |
+| ✅   | [chienmy](https://github.com/chienmy)             | [algorithm-pattern-java(Java 实现)](https://github.com/chienmy/algorithm-pattern-java), [在线文档 Gitbook](https://chienmy.gitbook.io/algorithm-pattern-java/) |
+| ✅   | [ligecarryme](https://github.com/ligecarryme)     | [algorithm-pattern-JavaScript(JS+TS 实现)](https://github.com/ligecarryme/algorithm-pattern-JavaScript)                                                        |
+| ✅   | [Esdeath](https://github.com/Esdeath)             | [algorithm-pattern-dart(dart 实现)](https://github.com/Esdeath/algorithm-pattern-dart),[在线文档 Gitbook](https://ayaseeri.gitbook.io/algorithm-pattern-dart/) |
+| ✅   | [longpi1](https://github.com/longpi1)             | [algorithm-pattern-golang(golang 实现)](https://github.com/longpi1/algorithm-pattern)                                                                          |
+| ✅   | [tpxxn](https://github.com/tpxxn)                 | [algorithm-pattern-CSharp(C# 实现)](https://github.com/tpxxn/algorithm-pattern-CSharp)                                                                         |

@@ -6,11 +6,94 @@
 
 进行 coding 面试时，如果不指定使用的编程语言，一般来讲考察的是做题的思路而不是编程本身，因此不需要从零开始实现一些基础的数据结构或算法，利用语言的一些特性和自带的标准库可以大大简化代码，提高做题速度。下面会总结一些 Rust 常用的特性，标准算法和数据结构。
 
+# 常用数据结构
 
+![7d77b5f106819d85b06b668fb53ba69](https://photosavercn.oss-cn-guangzhou.aliyuncs.com/img/202403302343683.jpg)
+
+## 栈 Stack LIFO
+
+在 Rust 中，可以使用`Vec`来模拟栈的行为，利用其`push`和`pop`方法：
+
+```rust
+let mut stack = Vec::new();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+println!("栈顶元素是：{:?}", stack.pop()); // 输出：Some(3)
+```
+
+## 队列 Queue FIFO
+
+Rust 没有内置的队列类型，但可以使用`VecDeque`来模拟队列的行为：
+
+```rust
+use std::collections::VecDeque;
+
+let mut queue = VecDeque::new();
+queue.push_back(1);
+queue.push_back(2);
+queue.push_back(3);
+println!("队首元素是：{:?}", queue.pop_front()); // 输出：Some(1)
+```
+
+## 堆
+
+Rust 的`BinaryHeap`提供了一个二叉堆实现，可用于创建优先队列：
+
+```rust
+use std::collections::BinaryHeap;
+
+let mut heap = BinaryHeap::new();
+heap.push(1);
+heap.push(5);
+heap.push(2);
+println!("最大元素是：{:?}", heap.pop()); // 输出：Some(5)
+```
+
+## HashSet，HashTable
+
+Rust 通过`HashSet`和`HashMap`提供了哈希集合和哈希表的支持：
+
+```rust
+use std::collections::HashSet;
+
+let mut set = HashSet::new();
+set.insert(1);
+set.insert(2);
+println!("集合包含1？ {}", set.contains(&1)); // 输出：true
+
+use std::collections::HashMap;
+
+let mut map = HashMap::new();
+map.insert("color", "red");
+println!("'color'键对应的值是：{}", map.get("color").unwrap_or(&"未找到")); // 输出："red"
+```
+
+Rust 的强类型系统、内存安全保证以及现代的并发支持，使其成为系统编程和高性能应用开发的有力工具。
 
 # 使用 Rust 写算法题的基本语法
 
-这里将简要介绍在使用 Rust 解决算法问题时的一些基本语法和概念。Rust 以其安全性、并发性和内存管理效率而闻名，理解其核心语法是高效利用这门语言的关键。
+## 排序
+
+在 Rust 中，排序通常使用`Vec`的`sort`或`sort_unstable`方法来实现，这两种方法都会就地排序。`sort`方法保证稳定排序，而`sort_unstable`则可能更快，但不保证稳定性。这里有个简单的示例：
+
+```rust
+let mut vec = vec![3, 1, 4, 1, 5, 9, 2, 6];
+vec.sort(); // 稳定排序
+println!("{:?}", vec); // 输出: [1, 1, 2, 3, 4, 5, 6, 9]
+```
+
+## 二分查找
+
+Rust 的`Vec`提供了`binary_search`方法来实现二分查找。如果找到了元素，它返回`Ok(index)`，否则返回`Err(index)`，其中`index`是该元素应当插入的位置保持排序顺序。示例如下：
+
+```rust
+let vec = vec![1, 2, 3, 4, 5];
+match vec.binary_search(&3) {
+    Ok(index) => println!("找到了3，在索引{}处", index),
+    Err(_) => println!("没有找到3"),
+}
+```
 
 ## 变量和可变性
 
@@ -207,7 +290,7 @@ println!("LIFTOFF!!!");
 
 ### match
 
-- **`match` 控制流**：`match` 允许您将一个值与一系列模式进行比较，然后根据匹配到的模式执行相应的代码。
+- **`match` 控制流**：`match` 将一个值与一系列模式进行比较，然后根据匹配到的模式执行相应的代码。
 
   ```rust
   enum Coin {
@@ -216,7 +299,7 @@ println!("LIFTOFF!!!");
       Dime,
       Quarter,
   }
-  
+
   fn value_in_cents(coin: Coin) -> u8 {
       match coin {
           Coin::Penny => 1,
@@ -313,7 +396,7 @@ if let Message::Write(text) = message {
 
 这里，`if let` 被用来检查 `message` 是否是 `Message::Write` 变体，如果是，它解构出 `text` 并打印出来。
 
-### 泛型（Generics）
+## 泛型（Generics）
 
 - 泛型是 Rust 用于编写函数和类型定义的一种方式，它可以处理多种数据类型。
 - 泛型函数例子：
@@ -338,9 +421,9 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
 fn largest<T>(list: &[T]) -> &T {
 ```
 
-我们将这个定义理解为：函数largest是某种类型T的泛型。该函数有一个名为list的参数，它是T类型值的切片。largest函数将返回对相同类型T的值的引用。
+我们将这个定义理解为：函数 largest 是某种类型 T 的泛型。该函数有一个名为 list 的参数，它是 T 类型值的切片。largest 函数将返回对相同类型 T 的值的引用。
 
-### 所有权和借用
+## 所有权和借用
 
 - Rust 通过所有权系统管理内存，编译器在编译时就会根据所有权规则进行检查。
 - 变量拥有它们的值，并负责清理这些值。
@@ -369,7 +452,7 @@ let r2 = &mut s;
    // Rust
    let s1 = String::from("hello");
    let len = calculate_length(&s1); // 使用&s1来借用s1的值
-   
+
    fn calculate_length(s: &String) -> usize { // s是对String的引用
        s.len()
    }
@@ -401,9 +484,7 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
 } // Here, some_integer goes out of scope. Nothing special happens.
 ```
 
-
-
-### `std::mem::` 和范围表达式 `..=`
+## `std::mem::` 和范围表达式 `..=`
 
 - `std::mem::swap` 用于交换两个变量的值。
 - 范围表达式 `..=` 用于创建一个包含起始值和结束值的范围。
@@ -419,7 +500,7 @@ for i in 1..=3 {
 }
 ```
 
-### 一些其他的知识
+## 一些其他的知识
 
 **切片（Slices）**：切片允许引用集合中的一段连续元素序列，而不是整个集合。切片是一种不拥有所有权的数据类型。
 
@@ -496,7 +577,7 @@ fn divide(numerator: f64, denominator: f64) -> Result<f64, String> {
 }
 ```
 
-**特征（Traits）**：定义一组方法，用于在不同类型之间共享行为。类似于其他语言中的接口。
+**特征（Traits）**：定义一组方法，用于在不同类型之间共享行为。类似于其他语言中的接口。与 interface 不同的地方在于，interface 会隐藏具体实现类型，而 trait 不会。
 
 ```rust
 // Rust
@@ -510,9 +591,3 @@ impl Summary for Article {
     }
 }
 ```
-
-
-
-\## 标准算法 #### 排序 Python 中排序主要使用 sorted() 和 .sort() 函数，在[官网](https://docs.python.org/3/howto/sorting.html)有详细介绍，大家可以自行阅读。 #### 二分查找和插入 Python 自带的 [bisect](https://docs.python.org/3/library/bisect.html) 库可以实现二分查找和插入，非常方便。 ## 标准数据结构 #### 栈 Python 中的栈使用自带的 list 类来实现，可参考[官方文档](https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-stacks)。 #### 队列 使用 collections 库中的 deque 类实现，可参考[官方文档](https://docs.python.org/3/library/collections.html#collections.deque)。 #### 堆 Python 中没有真的 heap 类，实现堆是使用 list 类配合 heapq 库中的堆算法，且只支持最小堆，最大堆需要通过传入负的优先级来实现，可参考[官方文档](https://docs.python.org/3.8/library/heapq.html)。 #### HashSet，HashTable 分别通过 [set 类](https://docs.python.org/3.8/library/stdtypes.html#set-types-set-frozenset)和 [dict 类](https://docs.python.org/3/library/stdtypes.html#typesmapping)来实现。 ## collections 库 Python 的 [collections 库](https://docs.python.org/3/library/collections.html)在刷题时会经常用到，它拓展了一些Python中基础的类，提供了更多功能，例如 defaultdict 可以预设字典中元素 value 的类型，自动提供初始化，Counter 可以直接统计元素出现个数等。 ## 总结 以上列举了一些用 Python3 做算法题时可以用到的一些特性，标准算法和数据结构，总结得肯定不全，因为 Python3 真的有很多可以利用的"骚操作"，大家在学习本项目的时候也会见到，一下记不住也没关系，多实战就会了。
-
-![7d77b5f106819d85b06b668fb53ba69](https://photosavercn.oss-cn-guangzhou.aliyuncs.com/img/202403302343683.jpg)
