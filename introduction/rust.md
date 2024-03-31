@@ -8,7 +8,7 @@
 
 # 常用数据结构
 
-![7d77b5f106819d85b06b668fb53ba69](https://photosavercn.oss-cn-guangzhou.aliyuncs.com/img/202403302343683.jpg)
+![FIFO & LIFO](https://photosavercn.oss-cn-guangzhou.aliyuncs.com/img/202403302343683.jpg)
 
 ## 栈 Stack LIFO
 
@@ -20,6 +20,15 @@ stack.push(1);
 stack.push(2);
 stack.push(3);
 println!("栈顶元素是：{:?}", stack.pop()); // 输出：Some(3)
+```
+
+> Vec::new():
+> Vec::new()用于创建一个新的、空的向量（动态数组）。Vec<T>是 Rust 的一个泛型集合类型，它可以存储多个 T 类型的值（其中 T 可以是任意类型）。这种方法不包含任何初始元素。
+> 示例：创建一个空的 i32 类型向量。
+
+```rust
+let v: Vec<i32> = Vec::new();
+// 这里v是一个空的Vec<i32>类型的向量，可以在之后向其中添加元素。
 ```
 
 ## 队列 Queue FIFO
@@ -95,6 +104,17 @@ match vec.binary_search(&3) {
 }
 ```
 
+> vec!是一个宏，用于创建并初始化一个 Vec<T>类型的向量。它可以接受一个或多个值作为参数，并返回一个包含这些值的向量。当你只有一个参数时，这个向量会包含一个元素；如果有多个值，可以用逗号隔开，向量将包含所有提供的值。
+> 示例：使用 vec!宏创建并初始化一个包含单个元素的向量。
+
+```rust
+let root = Some(10); // 假设这是某种类型的值
+let v = vec![root];
+在这个示例中，v是一个包含单个元素root的向量。
+```
+
+> 如果你需要一个空向量并打算稍后添加元素，就用 Vec::new()。如果你在创建向量时已经知道了一个或多个初始元素，就用 vec![root]（或者 vec![element1, element2, ...]来包含多个元素）
+
 ## 变量和可变性
 
 - 默认情况下，Rust 中的变量是不可变的。这是 Rust 旨在帮助您编写安全且易于并发的代码的众多提示之一。
@@ -157,7 +177,9 @@ Rust 是一种静态类型语言，意味着它必须在编译时知道所有变
 
 - 整型（如 `i32`、`u32`）、浮点型（`f32`、`f64`）、布尔型（`bool`）和字符型（`char`）。
 - 有符号整数类型以 i 而不是 u 开头
+
   ![img1](https://passmath.uk/b25b5bdf31c26f11a893888a9de2990.png)
+
   当符号重要时，数字会显示加号或减号；当符号重要时，数字会显示加号或减号；然而，当可以安全地假设该数字为正数时，它会不显示任何符号。
 
 ```rust
@@ -442,14 +464,14 @@ let r2 = &mut s;
 1. **所有权（Ownership）**：Rust 通过所有权系统管理内存，这与 Python 的垃圾回收机制不同。在 Rust 中，每个值都有一个变量作为其所有者，且每个值只能有一个所有者。当所有者离开作用域，值会被自动清理。
 
    ```rust
-   // Rust
+
    let s = String::from("hello"); // s是变量，拥有它的值
    ```
 
 2. **借用（Borrowing）**：Rust 允许通过引用来借用值，这样就可以使用值而不取得其所有权。引用分为可变引用和不可变引用。大白话讲就是变量前加&号，只取这个参数的值，而不会把这个的内存地址赋过来，使得原来的失效。
 
    ```rust
-   // Rust
+
    let s1 = String::from("hello");
    let len = calculate_length(&s1); // 使用&s1来借用s1的值
 
@@ -505,7 +527,6 @@ for i in 1..=3 {
 **切片（Slices）**：切片允许引用集合中的一段连续元素序列，而不是整个集合。切片是一种不拥有所有权的数据类型。
 
 ```rust
-// Rust
 let s = String::from("hello world");
 let hello = &s[0..5]; // 切片引用"hello"
 let world = &s[6..11]; // 切片引用"world"
@@ -514,7 +535,6 @@ let world = &s[6..11]; // 切片引用"world"
 **结构体（Structs）**：类似于 Python 中的类（class），用于自定义数据类型，可以包含多个不同类型的数据。
 
 ```rust
-// Rust
 struct User {
     username: String,
     email: String,
@@ -533,7 +553,6 @@ let user1 = User {
 **枚举（Enums）**：允许定义一个类型，该类型可以是几个不同的具体值之一。与结构体不同，枚举用于当值只能是几个固定变体中的一个时。
 
 ```rust
-// Rust
 enum IpAddrKind {
     V4,
     V6,
@@ -546,7 +565,6 @@ let six = IpAddrKind::V6;
 **模式匹配（Pattern Matching）**：通过`match`控制流构造，可以将一个值与一系列模式进行比较，并执行与第一个匹配的模式关联的代码。
 
 ```rust
-// Rust
 enum Coin {
     Penny,
     Nickel,
@@ -567,7 +585,6 @@ fn value_in_cents(coin: Coin) -> u8 {
 **错误处理（Error Handling）**：Rust 通过`Result`类型来处理可能发生错误的操作。`Result`类型是一个枚举，它的变体是`Ok`和`Err`。
 
 ```rust
-// Rust
 fn divide(numerator: f64, denominator: f64) -> Result<f64, String> {
     if denominator == 0.0 {
         Err(String::from("除数不能为0"))
@@ -580,7 +597,6 @@ fn divide(numerator: f64, denominator: f64) -> Result<f64, String> {
 **特征（Traits）**：定义一组方法，用于在不同类型之间共享行为。类似于其他语言中的接口。与 interface 不同的地方在于，interface 会隐藏具体实现类型，而 trait 不会。
 
 ```rust
-// Rust
 pub trait Summary {
     fn summarize(&self) -> String;
 }
