@@ -189,7 +189,7 @@ impl Solution {
 
 #### DFS 深度搜索-从下向上（分治法）
 
-```Python
+```rust
 impl Solution {
     // 前序遍历的递归实现
     pub fn preorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
@@ -215,7 +215,7 @@ impl Solution {
 
 #### [BFS 层次遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
 
-```Python
+```rust
 impl Solution {
     // 层次遍历的实现
     pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
@@ -281,7 +281,7 @@ impl Solution {
 
 - 思路 1：分治法
 
-```Python
+```rust
 impl Solution {
     // 计算二叉树的最大深度
     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
@@ -306,7 +306,7 @@ impl Solution {
 
 - 思路 2：层序遍历
 
-```Python
+```rust
 impl Solution {
     // 计算二叉树的最大深度
     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
@@ -351,7 +351,7 @@ impl Solution {
 
 - 思路 1：分治法，左边平衡 && 右边平衡 && 左右两边高度 <= 1，
 
-```Python
+```rust
 impl Solution {
     // 检查二叉树是否平衡
     pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
