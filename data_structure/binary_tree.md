@@ -4,9 +4,9 @@
 
 ### 二叉树遍历
 
-- 先序遍历：首先访问**<u>根</u>**，再先序遍历左（右）子树，最后先序遍历右（左）子树。
+- 先序遍历：首先访问<u>根</u>，再先序遍历左（右）子树，最后先序遍历右（左）子树。
 - 中序遍历：首先中序遍历左（右）子树，再访问<u>**根**</u>，最后中序遍历右（左）子树。
-- 后序遍历：首先后序遍历左（右）子树，再后序遍历右（左）子树，最后访问**<u>根</u>**。
+- 后序遍历：首先后序遍历左（右）子树，再后序遍历右（左）子树，最后访问<u>根</u>。
 
 注意点
 
@@ -446,26 +446,54 @@ TODO: 31/3
 
 - 思路：分治法。最大路径的可能情况：左子树的最大路径，右子树的最大路径，或通过根结点的最大路径。其中通过根结点的最大路径值等于以左子树根结点为端点的最大路径值加以右子树根结点为端点的最大路径值再加上根结点值，这里还要考虑有负值的情况即负值路径需要丢弃不取。
 
-```Python
-class Solution:
-    def maxPathSum(self, root: TreeNode) -> int:
+```rust
+use std::rc::Rc;
+use std::cell::RefCell;
+use std::cmp::max;
+impl Solution {
+    pub fn max_path_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        // 值-2147483648 是 i32 类型可以表示的最小整数值
+        let mut max_sum = -2147483648;
 
-        self.maxPath = float('-inf')
+        // dfs函数递归地计算每个节点作为路径终点的最大路径和，并更新全局最大路径和
+        fn dfs(root: &Option<Rc<RefCell<TreeNode>>>, max_sum: &mut i32) -> i32 {
+            match root {
+                // 如果当前节点存在
+                Some(node) => {
+                    let node = node.borrow(); // 获取当前节点的借用
+                    let val = node.val; // 当前节点的值
 
-        def largest_path_ends_at(node):
-            if node is None:
-                return float('-inf')
+                    // 递归计算左子树的最大路径和，如果为负则取0（即不包括该子树）
+                    let left_max = max(0, dfs(&node.left, max_sum));
+                    // 递归计算右子树的最大路径和，同样，如果为负则取0
+                    let right_max = max(0, dfs(&node.right, max_sum));
 
-            e_l = largest_path_ends_at(node.left)
-            e_r = largest_path_ends_at(node.right)
+                    // 更新全局最大路径和：考虑通过当前节点连接左右子树的路径和
+                    *max_sum = max(*max_sum, val + left_max + right_max);
 
-            self.maxPath = max(self.maxPath, node.val + max(0, e_l) + max(0, e_r), e_l, e_r)
+                    // 返回以当前节点为终点的最大路径和给父节点
+                    val + max(left_max, right_max)
+                },
+                // 如果当前节点不存在，返回0，表示没有路径贡献
+                None => 0,
+            }
+        }
 
-            return node.val + max(e_l, e_r, 0)
-
-        largest_path_ends_at(root)
-        return self.maxPath
+        // 从根节点开始递归，计算最大路径和
+        dfs(&root, &mut max_sum);
+        // 返回计算得到的全局最大路径和
+        max_sum
+    }
+}
 ```
+
+- 计算以每个节点为根的最大路径和，并更新一个全局的最大路径和。
+- 对于每个节点，dfs 函数计算两个重要的值：
+  - 以当前节点为终点的单侧最大路径和，这用于更新父节点的路径和。
+  - 包括当前节点值和左右子树的最大路径和，如果这个总和大于当前记录的 max_sum，则更新 max_sum。
+- max_sum 在递归过程中作为一个引用传递，使得每次计算得到更大的路径和时，都能实时更新全局的最大值。这种设计巧妙地避免了需要额外的全局变量或类属性来存储最大路径和的值。
+
+TODO:
 
 ### [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
