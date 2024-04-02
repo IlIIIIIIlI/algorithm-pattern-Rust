@@ -491,36 +491,60 @@ impl Solution {
   - 包括当前节点值和左右子树的最大路径和，如果这个总和大于当前记录的 max_sum，则更新 max_sum。
 - max_sum 在递归过程中作为一个引用传递，使得每次计算得到更大的路径和时，都能实时更新全局的最大值。这种设计巧妙地避免了需要额外的全局变量或类属性来存储最大路径和的值。
 
-TODO:
-
 ### [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
 > 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
 
 - 思路：分治法，有左子树的公共祖先或者有右子树的公共祖先，就返回子树的祖先，否则返回根节点
 
-```Python
-class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+```rust
+impl Solution {
+    // 解决问题的主要公开接口
+    pub fn lowest_common_ancestor(
+        root: Option<Rc<RefCell<TreeNode>>>, // 二叉树的根节点
+        p: Option<Rc<RefCell<TreeNode>>>, // 第一个目标节点
+        q: Option<Rc<RefCell<TreeNode>>>, // 第二个目标节点
+    ) -> Option<Rc<RefCell<TreeNode>>> { // 返回最低公共祖先节点
+        // 如果当前节点为空，或者当前节点就是p或q中的一个，直接返回当前节点
+        match root {
+            None => None,
+            Some(node) => {
+                if Rc::ptr_eq(&node, &p.as_ref().unwrap()) || Rc::ptr_eq(&node, &q.as_ref().unwrap()) {
+                    Some(node)
+                } else {
+                    // 否则，递归地在左右子树中查找p和q
+                    let left = Solution::lowest_common_ancestor(node.borrow().left.clone(), p.clone(), q.clone());
+                    let right = Solution::lowest_common_ancestor(node.borrow().right.clone(), p.clone(), q.clone());
 
-        if root is None:
-            return None
-
-        if root == p or root == q:
-            return root
-
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
-
-        if left is not None and right is not None:
-            return root
-        elif left is not None:
-            return left
-        elif right is not None:
-            return right
-        else:
-            return None
+                    // 如果p和q分别位于当前节点的两侧，说明当前节点就是它们的最低公共祖先
+                    if left.is_some() && right.is_some() {
+                        Some(node)
+                    } else if left.is_some() {
+                        // 如果p和q都在左子树，返回左子树的查找结果
+                        left
+                    } else {
+                        // 如果p和q都在右子树，返回右子树的查找结果
+                        right
+                    }
+                }
+            }
+        }
+    }
+}
 ```
+
+这段代码实现了寻找二叉树中两个给定节点的最低公共祖先（LCA）的算法：
+
+- 基本情况处理：如果当前节点为空，或者当前节点是 p 或 q 中的一个，直接返回当前节点作为结果。
+- 递归搜索：在当前节点的左右子树中递归查找 p 和 q。这是通过克隆左右子节点的引用并递归调用 lowest_common_ancestor 函数实现的。
+
+决策逻辑：
+
+- 如果 p 和 q 分别位于当前节点的两侧（即左右子树搜索结果均为非空），则当前节点是它们的最低公共祖先。
+- 如果 p 和 q 都在左子树或都在右子树中（即左或右子树搜索结果为非空），则返回相应子树的搜索结果。
+- 在所有其他情况下，返回 None，表示在当前分支中没有找到 p 和 q 的最低公共祖先。
+
+TODO:
 
 ### BFS 层次应用
 
@@ -668,7 +692,7 @@ class Solution:
 - [x] [maximum-depth-of-binary-tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 - [x] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
 - [x] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
-- [ ] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+- [x] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 - [ ] [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
 - [ ] [binary-tree-level-order-traversal-ii](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
 - [ ] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
