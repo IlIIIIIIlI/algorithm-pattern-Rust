@@ -544,8 +544,6 @@ impl Solution {
 - 如果 p 和 q 都在左子树或都在右子树中（即左或右子树搜索结果为非空），则返回相应子树的搜索结果。
 - 在所有其他情况下，返回 None，表示在当前分支中没有找到 p 和 q 的最低公共祖先。
 
-TODO:
-
 ### BFS 层次应用
 
 ### [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
@@ -554,43 +552,91 @@ TODO:
 
 - 思路：在 BFS 迭代模板上改用双端队列控制输出顺序
 
-```Python
-class Solution:
-    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+```rust
+impl Solution {
+    // 主函数：实现之字形层次遍历二叉树
+    pub fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
+        let mut ans = Vec::new(); // 存储最终的遍历结果
+        let mut q = Vec::new(); // 使用Vec作为队列来存储当前层的节点
+        let mut reverse = false; // 标志位，用于控制遍历方向
 
-        levels = []
-        if root is None:
-            return levels
+        // 如果根节点存在，将其加入队列
+        if let Some(root_node) = root {
+            q.push(root_node);
+        } else {
+            return ans; // 如果根节点为空，则直接返回空结果
+        }
 
-        s = collections.deque([root])
+        // 当队列不为空时，进行循环遍历
+        while !q.is_empty() {
+            let mut curr = Vec::new(); // 存储当前层的节点值
+            let mut curr_q = Vec::new(); // 存储下一层的节点
 
-        start_from_left = True
-        while len(s) > 0:
-            levels.append([])
-            level_size = len(s)
+            // 遍历当前层的所有节点
+            for node in q.into_iter() {
+                let node_ref = node.borrow(); // 获取节点的借用
 
-            if start_from_left:
-                for _ in range(level_size):
-                    node = s.popleft()
-                    levels[-1].append(node.val)
-                    if node.left is not None:
-                        s.append(node.left)
-                    if node.right is not None:
-                        s.append(node.right)
-            else:
-                for _ in range(level_size):
-                    node = s.pop()
-                    levels[-1].append(node.val)
-                    if node.right is not None:
-                        s.appendleft(node.right)
-                    if node.left is not None:
-                        s.appendleft(node.left)
+                // 根据当前的遍历方向决定如何加入节点值
+                if reverse {
+                    // 如果是反向遍历，从前面插入节点值
+                    curr.insert(0, node_ref.val);
+                } else {
+                    // 如果是正向遍历，从后面追加节点值
+                    curr.push(node_ref.val);
+                }
 
-            start_from_left = not start_from_left
+                // 将当前节点的左右子节点加入到下一层的队列中
+                if let Some(left) = node_ref.left.as_ref() {
+                    curr_q.push(left.clone());
+                }
+                if let Some(right) = node_ref.right.as_ref() {
+                    curr_q.push(right.clone());
+                }
+            }
 
+            // 将当前层的结果加入到最终结果中
+            ans.push(curr);
+            // 更新队列为下一层的节点，准备下一轮遍历
+            q = curr_q;
+            // 改变遍历方向
+            reverse = !reverse;
+        }
 
-        return levels
+        ans // 返回最终的遍历结果
+    }
+}
 ```
+
+- 之字形遍历的核心在于交替改变每一层的遍历方向：正向时直接追加节点值至当前层结果数组的尾部，反向时从数组的前端插入节点值，以此模拟“之字形”的遍历顺序。
+
+1. **初始化**：
+
+   - 创建结果列表`ans`存储每一层的节点值。
+   - 创建队列`q`临时存放每一层的节点，以便按顺序访问它们。
+   - 用`reverse`标志追踪遍历方向，开始时设为`false`表示从左到右。
+
+2. **开始遍历**：
+
+   - 如果树非空，把根节点加入`q`开始遍历。
+   - 进入循环，每次循环处理一层节点。
+
+3. **处理当前层**：
+
+   - 创建临时列表`curr`存储当前层节点值。
+   - 遍历`q`中所有节点，根据`reverse`标志决定添加节点值到`curr`的头部还是尾部。
+   - 同时，把当前节点的左右子节点加入到`curr_q`准备下一层的遍历。
+
+4. **方向转换和准备下一层**：
+
+   - 遍历完一层后，把`curr`添加到`ans`，表示完成这层的遍历。
+   - 把`reverse`的值反转，改变下一层的遍历方向。
+   - 更新`q`为`curr_q`，继续下一层的遍历。
+
+5. **结束遍历**：
+   - 当`q`为空时，结束循环，说明所有层都遍历完毕。
+   - 返回`ans`作为最终的之字形遍历结果。
+
+TODO:
 
 ### 二叉搜索树应用
 
@@ -693,8 +739,6 @@ class Solution:
 - [x] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
 - [x] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
 - [x] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
-- [ ] [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
-- [ ] [binary-tree-level-order-traversal-ii](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
-- [ ] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
+- [x] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
 - [ ] [validate-binary-search-tree](https://leetcode-cn.com/problems/validate-binary-search-tree/)
 - [ ] [insert-into-a-binary-search-tree](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
