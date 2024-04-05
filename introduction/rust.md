@@ -1,16 +1,18 @@
-# 使用 Rust 写算法题
+# Rust 语言入门
+
+## 使用 Rust 写算法题
 
 这里简单介绍使用 Rust 写算法题时的一些特点。本项目并不是一个 Rust 教程，所以默认大家对 Rust 有一定的了解，对于零基础的同学建议首先了解一下 Rust 的基本语法等基础知识。
 
-## 逻辑
+### 逻辑
 
 进行 coding 面试时，如果不指定使用的编程语言，一般来讲考察的是做题的思路而不是编程本身，因此不需要从零开始实现一些基础的数据结构或算法，利用语言的一些特性和自带的标准库可以大大简化代码，提高做题速度。下面会总结一些 Rust 常用的特性，标准算法和数据结构。
 
-# 常用数据结构
+## 常用数据结构
 
 ![FIFO & LIFO](https://photosavercn.oss-cn-guangzhou.aliyuncs.com/img/202403302343683.jpg)
 
-## 栈 Stack LIFO
+### 栈 Stack LIFO
 
 在 Rust 中，可以使用`Vec`来模拟栈的行为，利用其`push`和`pop`方法：
 
@@ -22,16 +24,14 @@ stack.push(3);
 println!("栈顶元素是：{:?}", stack.pop()); // 输出：Some(3)
 ```
 
-> Vec::new():
-> Vec::new()用于创建一个新的、空的向量（动态数组）。Vec<T>是 Rust 的一个泛型集合类型，它可以存储多个 T 类型的值（其中 T 可以是任意类型）。这种方法不包含任何初始元素。
-> 示例：创建一个空的 i32 类型向量。
+> Vec::new(): Vec::new()用于创建一个新的、空的向量（动态数组）。Vec是 Rust 的一个泛型集合类型，它可以存储多个 T 类型的值（其中 T 可以是任意类型）。这种方法不包含任何初始元素。 示例：创建一个空的 i32 类型向量。
 
 ```rust
 let v: Vec<i32> = Vec::new();
 // 这里v是一个空的Vec<i32>类型的向量，可以在之后向其中添加元素。
 ```
 
-## 队列 Queue FIFO
+### 队列 Queue FIFO
 
 Rust 没有内置的队列类型，但可以使用`VecDeque`来模拟队列的行为：
 
@@ -45,7 +45,7 @@ queue.push_back(3);
 println!("队首元素是：{:?}", queue.pop_front()); // 输出：Some(1)
 ```
 
-## 堆
+### 堆
 
 Rust 的`BinaryHeap`提供了一个二叉堆实现，可用于创建优先队列：
 
@@ -59,7 +59,7 @@ heap.push(2);
 println!("最大元素是：{:?}", heap.pop()); // 输出：Some(5)
 ```
 
-## HashSet，HashTable
+### HashSet，HashTable
 
 Rust 通过`HashSet`和`HashMap`提供了哈希集合和哈希表的支持：
 
@@ -80,9 +80,9 @@ println!("'color'键对应的值是：{}", map.get("color").unwrap_or(&"未找�
 
 Rust 的强类型系统、内存安全保证以及现代的并发支持，使其成为系统编程和高性能应用开发的有力工具。
 
-# 使用 Rust 写算法题的基本语法
+## 使用 Rust 写算法题的基本语法
 
-## 排序
+### 排序
 
 在 Rust 中，排序通常使用`Vec`的`sort`或`sort_unstable`方法来实现，这两种方法都会就地排序。`sort`方法保证稳定排序，而`sort_unstable`则可能更快，但不保证稳定性。这里有个简单的示例：
 
@@ -92,7 +92,7 @@ vec.sort(); // 稳定排序
 println!("{:?}", vec); // 输出: [1, 1, 2, 3, 4, 5, 6, 9]
 ```
 
-## 二分查找
+### 二分查找
 
 Rust 的`Vec`提供了`binary_search`方法来实现二分查找。如果找到了元素，它返回`Ok(index)`，否则返回`Err(index)`，其中`index`是该元素应当插入的位置保持排序顺序。示例如下：
 
@@ -104,8 +104,7 @@ match vec.binary_search(&3) {
 }
 ```
 
-> vec!是一个宏，用于创建并初始化一个 Vec<T>类型的向量。它可以接受一个或多个值作为参数，并返回一个包含这些值的向量。当你只有一个参数时，这个向量会包含一个元素；如果有多个值，可以用逗号隔开，向量将包含所有提供的值。
-> 示例：使用 vec!宏创建并初始化一个包含单个元素的向量。
+> vec!是一个宏，用于创建并初始化一个 Vec类型的向量。它可以接受一个或多个值作为参数，并返回一个包含这些值的向量。当你只有一个参数时，这个向量会包含一个元素；如果有多个值，可以用逗号隔开，向量将包含所有提供的值。 示例：使用 vec!宏创建并初始化一个包含单个元素的向量。
 
 ```rust
 let root = Some(10); // 假设这是某种类型的值
@@ -113,25 +112,25 @@ let v = vec![root];
 在这个示例中，v是一个包含单个元素root的向量。
 ```
 
-> 如果你需要一个空向量并打算稍后添加元素，就用 Vec::new()。如果你在创建向量时已经知道了一个或多个初始元素，就用 vec![root]（或者 vec![element1, element2, ...]来包含多个元素）
+> 如果你需要一个空向量并打算稍后添加元素，就用 Vec::new()。如果你在创建向量时已经知道了一个或多个初始元素，就用 vec!\[root]（或者 vec!\[element1, element2, ...]来包含多个元素）
 
-## 变量和可变性
+### 变量和可变性
 
-- 默认情况下，Rust 中的变量是不可变的。这是 Rust 旨在帮助您编写安全且易于并发的代码的众多提示之一。
-- 可以通过添加 `mut` 关键字使变量可变。
+* 默认情况下，Rust 中的变量是不可变的。这是 Rust 旨在帮助您编写安全且易于并发的代码的众多提示之一。
+* 可以通过添加 `mut` 关键字使变量可变。
 
 ```rust
 let x = 5; // 不可变变量
 let mut y = 5; // 可变变量
 ```
 
-- 不可变性有助于预防在编写代码时不小心改变了值应该保持不变的变量。
+* 不可变性有助于预防在编写代码时不小心改变了值应该保持不变的变量。
 
-## 常量
+### 常量
 
-- 常量使用 `const` 关键字声明，并且必须标注类型。
-- 常量总是不可变的。不允许将 mut 与常量一起使用。
-- 常量可以在任何作用域内声明，包括全局作用域。
+* 常量使用 `const` 关键字声明，并且必须标注类型。
+* 常量总是不可变的。不允许将 mut 与常量一起使用。
+* 常量可以在任何作用域内声明，包括全局作用域。
 
 ```rust
 const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
@@ -139,9 +138,9 @@ const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
 
 > Rust 的常量命名约定是全部大写，单词之间使用下划线。编译器能够在编译时评估一组有限的操作，这让我们可以选择以更容易理解和验证的方式写出该值，而不是将此常量设置为值 10,800
 
-## 遮蔽（Shadowing）
+### 遮蔽（Shadowing）
 
-- 通过使用相同的变量名重新声明新变量，可以遮蔽之前的变量。
+* 通过使用相同的变量名重新声明新变量，可以遮蔽之前的变量。
 
 ```rust
 fn main() {
@@ -169,18 +168,18 @@ The value of x in the inner scope is: 12
 The value of x is: 6
 ```
 
-## 数据类型
+### 数据类型
 
 Rust 是一种静态类型语言，意味着它必须在编译时知道所有变量的类型。
 
-### 标量类型
+#### 标量类型
 
-- 整型（如 `i32`、`u32`）、浮点型（`f32`、`f64`）、布尔型（`bool`）和字符型（`char`）。
-- 有符号整数类型以 i 而不是 u 开头
+* 整型（如 `i32`、`u32`）、浮点型（`f32`、`f64`）、布尔型（`bool`）和字符型（`char`）。
+*   有符号整数类型以 i 而不是 u 开头
 
-  ![img1](https://passmath.uk/b25b5bdf31c26f11a893888a9de2990.png)
+    ![img1](https://passmath.uk/b25b5bdf31c26f11a893888a9de2990.png)
 
-  当符号重要时，数字会显示加号或减号；当符号重要时，数字会显示加号或减号；然而，当可以安全地假设该数字为正数时，它会不显示任何符号。
+    当符号重要时，数字会显示加号或减号；当符号重要时，数字会显示加号或减号；然而，当可以安全地假设该数字为正数时，它会不显示任何符号。
 
 ```rust
 let int: i32 = 5;
@@ -189,9 +188,9 @@ let boolean: bool = true;
 let character: char = 'a';
 ```
 
-### 复合类型
+#### 复合类型
 
-- Rust 有两种 元组（Tuple）和数组（Array）。
+* Rust 有两种 元组（Tuple）和数组（Array）。
 
 ```rust
 // 元组
@@ -218,11 +217,11 @@ fn main() {
 }
 ```
 
-## 函数
+### 函数
 
-- 使用 `fn` 关键字声明函数。
-- Rust 代码使用蛇形命名法作为函数和变量名称的常规样式，**其中所有字母均为小写，并为单独的单词添加下划线**。
-- 函数参数必须标注类型。
+* 使用 `fn` 关键字声明函数。
+* Rust 代码使用蛇形命名法作为函数和变量名称的常规样式，**其中所有字母均为小写，并为单独的单词添加下划线**。
+* 函数参数必须标注类型。
 
 ```rust
 fn another_function(x: i32) {
@@ -230,7 +229,7 @@ fn another_function(x: i32) {
 }
 ```
 
-- 函数可以返回值，并且返回值类型需要在箭头（`->`）后指明。
+* 函数可以返回值，并且返回值类型需要在箭头（`->`）后指明。
 
 ```rust
 fn five() -> i32 {
@@ -238,11 +237,11 @@ fn five() -> i32 {
 }
 ```
 
-## 控制流
+### 控制流
 
-### if
+#### if
 
-- 使用 `if` 表达式进行条件分支。
+* 使用 `if` 表达式进行条件分支。
 
 ```rust
 fn main() {
@@ -260,7 +259,7 @@ fn main() {
 }
 ```
 
-### loop, while, for
+#### loop, while, for
 
 ```rust
 // loop
@@ -310,62 +309,121 @@ println!("LIFTOFF!!!");
 
 ![loop](https://passmath.uk/fb63acf4ff8d83d9385930b19085227.png)
 
-### match
+***
 
-- **`match` 控制流**：`match` 将一个值与一系列模式进行比较，然后根据匹配到的模式执行相应的代码。
+#### match
 
-  ```rust
-  enum Coin {
-      Penny,
-      Nickel,
-      Dime,
-      Quarter,
+*   **`match` 控制流**：`match` 将一个值与一系列模式进行比较，然后根据匹配到的模式执行相应的代码。
+
+    ```rust
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter,
+    }
+
+    fn value_in_cents(coin: Coin) -> u8 {
+        match coin {
+            Coin::Penny => 1,
+            Coin::Nickel => 5,
+            Coin::Dime => 10,
+            Coin::Quarter => 25,
+        }
+    }
+
+    // 模式匹配示例
+    fn main() {
+        let value = 5;
+
+        match value {
+            1 => println!("匹配到1"),  // 如果value等于1，执行此分支
+            2 | 3 => println!("匹配到2或3"),  // 如果value等于2或3，执行此分支
+            4..=6 => println!("匹配到4到6之间的值"),  // 如果value在4到6的范围内，执行此分支
+            _ => println!("默认分支"),  // 如果以上条件都不满足，执行默认分支
+        }
+
+        let fruit = "apple";
+
+        match fruit {
+            "apple" => println!("这是苹果"),
+            "banana" => println!("这是香蕉"),
+            _ => println!("这是其他水果"),
+        }
+    }
+    ```
+* **模式匹配**：模式可以是字面值、变量名、通配符等。`match` 表达式确保所有可能的情况都被处理。
+
+**模式中的值绑定**
+
+*   **绑定到模式中的值**：`match` 手臂（arm）中的模式可以绑定到匹配值的部分。
+
+    ```rust
+    fn value_in_cents(coin: Coin) -> u8 {
+        match coin {
+            Coin::Quarter(state) => {
+                println!("州季度币来自 {:?}", state);
+                25
+            },
+            _ => 0, // 使用 `_` 处理其他所有情况
+        }
+    }
+    ```
+
+**`Option<T>` 与 `match`**
+
+* **使用 `Option<T>`**：`Option<T>` 枚举是 Rust 的一种功能，允许编码时可选地包含或不包含值，这使得 Rust 无需使用空值就能处理可能不存在的值。
+  * e.g. 获取一个 `Option<i32>` ，如果其中含有一个值，将其加一。如果其中没有值，函数应该返回 `None` 值，而不尝试执行任何操作
+
+```rust
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+```
+
+{% hint style="info" %}
+`Rust` 中的匹配是穷举式exhaustive的：必须穷举到最后的可能性来使代码有效
+{% endhint %}
+
+> 参考[前端七八九](https://mp.weixin.qq.com/s/vEWXSFhO1AXBV-ATkZcxnQ)
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>例子：match的函数用法</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>例子：通配模式</p></figcaption></figure>
+
+***
+
+#### if let
+
+{% hint style="info" %}
+可以认为 `if let` 是 `match` 的一个**「语法糖」**，它当值匹配某一模式时执行代码而忽略所有其他值。
+
+`if let` 特别适用于 `Option<T>` 和 `Result<T, E>` 这样的枚举，因为它们经常在逻辑中只关心某一个具体的值或结果。
+{% endhint %}
+
+以下两个语句相等：
+
+```rust
+fn main() {
+  let some_u8_value = Some(0u8);
+  match some_u8_value {
+      Some(3) => println!("three"),
+      _ => (),
   }
+}
+```
 
-  fn value_in_cents(coin: Coin) -> u8 {
-      match coin {
-          Coin::Penny => 1,
-          Coin::Nickel => 5,
-          Coin::Dime => 10,
-          Coin::Quarter => 25,
-      }
+```rust
+fn main() {
+  let some_u8_value = Some(0u8);
+  if let Some(3) = some_u8_value {
+      println!("three");
   }
-  ```
-
-- **模式匹配**：模式可以是字面值、变量名、通配符等。`match` 表达式确保所有可能的情况都被处理。
-
-#### 模式中的值绑定
-
-- **绑定到模式中的值**：`match` 手臂（arm）中的模式可以绑定到匹配值的部分。
-
-  ```rust
-  fn value_in_cents(coin: Coin) -> u8 {
-      match coin {
-          Coin::Quarter(state) => {
-              println!("州季度币来自 {:?}", state);
-              25
-          },
-          _ => 0, // 使用 `_` 处理其他所有情况
-      }
-  }
-  ```
-
-#### `Option<T>` 与 `match`
-
-- **使用 `Option<T>`**：`Option<T>` 枚举是 Rust 的一种功能，允许编码时可选地包含或不包含值，这使得 Rust 无需使用空值就能处理可能不存在的值。
-
-  ```rust
-  fn plus_one(x: Option<i32>) -> Option<i32> {
-      match x {
-          None => None,
-          Some(i) => Some(i + 1),
-      }
-  }
-  ```
-
-`if let` 是 Rust 中的一个语法糖，用于处理只关心一种匹配模式的情况，而不是匹配所有可能的枚举变量。它使代码更简洁，减少了 `match` 语句的样板代码。`if let` 特别适用于 `Option<T>` 和 `Result<T, E>` 这样的枚举，因为它们经常在逻辑中只关心某一个具体的值或结果。
-
-### if let
+}
+```
 
 标准的 `match` 语句需要覆盖枚举的所有可能性。例如，使用 `Option<i32>` 时：
 
@@ -386,7 +444,7 @@ if let Some(x) = some_option {
 }
 ```
 
-#### `else` 分支
+**`else` 分支**
 
 `if let` 还可以与 `else` 配合使用，来处理不匹配模式的情况，这等同于 `match` 语句中的 `_` 分支：
 
@@ -398,7 +456,7 @@ if let Some(x) = some_option {
 }
 ```
 
-#### 解构枚举
+**解构枚举**
 
 `if let` 不仅可以用于 `Option<T>` 和 `Result<T, E>`，还可以用于任何枚举。例如，考虑以下带有数据的枚举：
 
@@ -418,10 +476,10 @@ if let Message::Write(text) = message {
 
 这里，`if let` 被用来检查 `message` 是否是 `Message::Write` 变体，如果是，它解构出 `text` 并打印出来。
 
-## 泛型（Generics）
+### 泛型（Generics）
 
-- 泛型是 Rust 用于编写函数和类型定义的一种方式，它可以处理多种数据类型。
-- 泛型函数例子：
+* 泛型是 Rust 用于编写函数和类型定义的一种方式，它可以处理多种数据类型。
+* 泛型函数例子：
 
 ```rust
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
@@ -445,11 +503,11 @@ fn largest<T>(list: &[T]) -> &T {
 
 我们将这个定义理解为：函数 largest 是某种类型 T 的泛型。该函数有一个名为 list 的参数，它是 T 类型值的切片。largest 函数将返回对相同类型 T 的值的引用。
 
-## 所有权和借用
+### 所有权和借用
 
-- Rust 通过所有权系统管理内存，编译器在编译时就会根据所有权规则进行检查。
-- 变量拥有它们的值，并负责清理这些值。
-- 借用分为可变借用 `&mut T` 和不可变借用 `&T`。
+* Rust 通过所有权系统管理内存，编译器在编译时就会根据所有权规则进行检查。
+* 变量拥有它们的值，并负责清理这些值。
+* 借用分为可变借用 `&mut T` 和不可变借用 `&T`。
 
 ```rust
 let mut s = String::from("hello");
@@ -461,24 +519,23 @@ let mut s = String::from("hello");
 let r2 = &mut s;
 ```
 
-1. **所有权（Ownership）**：Rust 通过所有权系统管理内存，这与 Python 的垃圾回收机制不同。在 Rust 中，每个值都有一个变量作为其所有者，且每个值只能有一个所有者。当所有者离开作用域，值会被自动清理。
+1.  **所有权（Ownership）**：Rust 通过所有权系统管理内存，这与 Python 的垃圾回收机制不同。在 Rust 中，每个值都有一个变量作为其所有者，且每个值只能有一个所有者。当所有者离开作用域，值会被自动清理。
 
-   ```rust
+    ```rust
 
-   let s = String::from("hello"); // s是变量，拥有它的值
-   ```
+    let s = String::from("hello"); // s是变量，拥有它的值
+    ```
+2.  **借用（Borrowing）**：Rust 允许通过引用来借用值，这样就可以使用值而不取得其所有权。引用分为可变引用和不可变引用。大白话讲就是变量前加&号，只取这个参数的值，而不会把这个的内存地址赋过来，使得原来的失效。
 
-2. **借用（Borrowing）**：Rust 允许通过引用来借用值，这样就可以使用值而不取得其所有权。引用分为可变引用和不可变引用。大白话讲就是变量前加&号，只取这个参数的值，而不会把这个的内存地址赋过来，使得原来的失效。
+    ```rust
 
-   ```rust
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1); // 使用&s1来借用s1的值
 
-   let s1 = String::from("hello");
-   let len = calculate_length(&s1); // 使用&s1来借用s1的值
-
-   fn calculate_length(s: &String) -> usize { // s是对String的引用
-       s.len()
-   }
-   ```
+    fn calculate_length(s: &String) -> usize { // s是对String的引用
+        s.len()
+    }
+    ```
 
 ```rust
 fn main() {
@@ -506,10 +563,10 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
 } // Here, some_integer goes out of scope. Nothing special happens.
 ```
 
-## `std::mem::` 和范围表达式 `..=`
+### `std::mem::` 和范围表达式 `..=`
 
-- `std::mem::swap` 用于交换两个变量的值。
-- 范围表达式 `..=` 用于创建一个包含起始值和结束值的范围。
+* `std::mem::swap` 用于交换两个变量的值。
+* 范围表达式 `..=` 用于创建一个包含起始值和结束值的范围。
 
 ```rust
 let mut x = 5;
@@ -522,7 +579,7 @@ for i in 1..=3 {
 }
 ```
 
-## 一些其他的知识
+### 一些其他的知识
 
 **切片（Slices）**：切片允许引用集合中的一段连续元素序列，而不是整个集合。切片是一种不拥有所有权的数据类型。
 

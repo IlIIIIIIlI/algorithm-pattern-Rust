@@ -16,7 +16,7 @@
 
 > 设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。
 
-- 思路：用两个栈实现或插入元组实现，保证当前最小值在栈顶即可
+* 思路：用两个栈实现或插入元组实现，保证当前最小值在栈顶即可
 
 ```Python
 class MinStack:
@@ -42,10 +42,9 @@ class MinStack:
 
 ### [evaluate-reverse-polish-notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
 
-> **波兰表达式计算** > **输入:** ["2", "1", "+", "3", "*"] > **输出:** 9
-> **解释:** ((2 + 1) \* 3) = 9
+> **波兰表达式计算** > **输入:** \["2", "1", "+", "3", "\*"] > **输出:** 9 **解释:** ((2 + 1) \* 3) = 9
 
-- 思路：通过栈保存原来的元素，遇到表达式弹出运算，再推入结果，重复这个过程
+* 思路：通过栈保存原来的元素，遇到表达式弹出运算，再推入结果，重复这个过程
 
 ```Python
 class Solution:
@@ -80,12 +79,9 @@ class Solution:
 
 ### [decode-string](https://leetcode-cn.com/problems/decode-string/)
 
-> 给定一个经过编码的字符串，返回它解码后的字符串。
-> s = "3[a]2[bc]", 返回 "aaabcbc".
-> s = "3[a2[c]]", 返回 "accaccacc".
-> s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
+> 给定一个经过编码的字符串，返回它解码后的字符串。 s = "3\[a]2\[bc]", 返回 "aaabcbc". s = "3\[a2\[c]]", 返回 "accaccacc". s = "2\[abc]3\[cd]ef", 返回 "abcabccdcdcdef".
 
-- 思路：通过两个栈进行操作，一个用于存数，另一个用来存字符串
+* 思路：通过两个栈进行操作，一个用于存数，另一个用来存字符串
 
 ```Python
 class Solution:
@@ -113,9 +109,9 @@ class Solution:
 
 ### [binary-tree-inorder-traversal](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
 
-> 给定一个二叉树，返回它的*中序*遍历。
+> 给定一个二叉树，返回它的_中序_遍历。
 
-- [reference](https://en.wikipedia.org/wiki/Tree_traversal#In-order)
+* [reference](https://en.wikipedia.org/wiki/Tree\_traversal#In-order)
 
 ```Python
 class Solution:
@@ -140,7 +136,7 @@ class Solution:
 
 > 给你无向连通图中一个节点的引用，请你返回该图的深拷贝（克隆）。
 
-- BFS
+* BFS
 
 ```Python
 class Solution:
@@ -164,7 +160,7 @@ class Solution:
         return visited[start]
 ```
 
-- DFS iterative
+* DFS iterative
 
 ```Python
 class Solution:
@@ -196,11 +192,11 @@ class Solution:
 
 ### [number-of-islands](https://leetcode-cn.com/problems/number-of-islands/)
 
-> 给定一个由  '1'（陆地）和 '0'（水）组成的的二维网格，计算岛屿的数量。一个岛被水包围，并且它是通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围。
+> 给定一个由  '1'（陆地）和 '0'（水）组成的的二维网格，计算岛屿的数量。一个岛被水包围，并且它是通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围。
 
 High-level problem: number of connected component of graph
 
-- 思路：通过深度搜索遍历可能性（注意标记已访问元素）
+* 思路：通过深度搜索遍历可能性（注意标记已访问元素）
 
 ```Python
 class Solution:
@@ -240,10 +236,9 @@ class Solution:
 
 ### [largest-rectangle-in-histogram](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
 
-> 给定 _n_ 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
-> 求在该柱状图中，能够勾勒出来的矩形的最大面积。
+> 给定 _n_ 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。 求在该柱状图中，能够勾勒出来的矩形的最大面积。
 
-- 思路 1：蛮力法，比较每个以 i 开始 j 结束的最大矩形，A(i, j) = (j - i + 1) * min_height(i, j)，时间复杂度 O(n^2) 无法 AC。
+* 思路 1：蛮力法，比较每个以 i 开始 j 结束的最大矩形，A(i, j) = (j - i + 1) \* min\_height(i, j)，时间复杂度 O(n^2) 无法 AC。
 
 ```Python
 class Solution:
@@ -261,7 +256,7 @@ class Solution:
         return max_area
 ```
 
-- 思路 2: 设 A(i, j) 为区间 [i, j) 内最大矩形的面积，k 为 [i, j) 内最矮 bar 的坐标，则 A(i, j) = max((j - i) * heights[k], A(i, k), A(k+1, j)), 使用分治法进行求解。时间复杂度 O(nlogn)，其中使用简单遍历求最小值无法 AC (最坏情况退化到 O(n^2))，使用线段树优化后勉强 AC。
+* 思路 2: 设 A(i, j) 为区间 \[i, j) 内最大矩形的面积，k 为 \[i, j) 内最矮 bar 的坐标，则 A(i, j) = max((j - i) \* heights\[k], A(i, k), A(k+1, j)), 使用分治法进行求解。时间复杂度 O(nlogn)，其中使用简单遍历求最小值无法 AC (最坏情况退化到 O(n^2))，使用线段树优化后勉强 AC。
 
 ```Python
 class Solution:
@@ -299,7 +294,7 @@ class Solution:
         return LRA(0, n)
 ```
 
-- 思路 3：包含当前 bar 最大矩形的边界为左边第一个高度小于当前高度的 bar 和右边第一个高度小于当前高度的 bar。
+* 思路 3：包含当前 bar 最大矩形的边界为左边第一个高度小于当前高度的 bar 和右边第一个高度小于当前高度的 bar。
 
 ```Python
 class Solution:
@@ -402,10 +397,9 @@ class Solution:
 
 ### [01-matrix](https://leetcode-cn.com/problems/01-matrix/)
 
-> 给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。
-> 两个相邻元素间的距离为 1
+> 给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。 两个相邻元素间的距离为 1
 
-- 思路 1: 从 0 开始 BFS, 遇到距离最小值需要更新的则更新后重新入队更新后续结点
+* 思路 1: 从 0 开始 BFS, 遇到距离最小值需要更新的则更新后重新入队更新后续结点
 
 ```Python
 class Solution:
@@ -437,7 +431,7 @@ class Solution:
         return dist        
 ```
 
-- 思路 2: 2-pass DP，dist(i, j) = max{dist(i - 1, j), dist(i + 1, j), dist(i, j - 1), dist(i, j + 1)} + 1
+* 思路 2: 2-pass DP，dist(i, j) = max{dist(i - 1, j), dist(i + 1, j), dist(i, j - 1), dist(i, j + 1)} + 1
 
 ```Python
 class Solution:
@@ -577,20 +571,20 @@ class Solution:
 
 ## 总结
 
-- 熟悉栈的使用场景
-  - 后入先出，保存临时值
-  - 利用栈 DFS 深度搜索
-- 熟悉队列的使用场景
-  - 利用队列 BFS 广度搜索
+* 熟悉栈的使用场景
+  * 后入先出，保存临时值
+  * 利用栈 DFS 深度搜索
+* 熟悉队列的使用场景
+  * 利用队列 BFS 广度搜索
 
 ## 练习
 
-- [ ] [min-stack](https://leetcode-cn.com/problems/min-stack/)
-- [ ] [evaluate-reverse-polish-notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
-- [ ] [decode-string](https://leetcode-cn.com/problems/decode-string/)
-- [ ] [binary-tree-inorder-traversal](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
-- [ ] [clone-graph](https://leetcode-cn.com/problems/clone-graph/)
-- [ ] [number-of-islands](https://leetcode-cn.com/problems/number-of-islands/)
-- [ ] [largest-rectangle-in-histogram](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
-- [ ] [implement-queue-using-stacks](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
-- [ ] [01-matrix](https://leetcode-cn.com/problems/01-matrix/)
+* [ ] [min-stack](https://leetcode-cn.com/problems/min-stack/)
+* [ ] [evaluate-reverse-polish-notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
+* [ ] [decode-string](https://leetcode-cn.com/problems/decode-string/)
+* [ ] [binary-tree-inorder-traversal](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+* [ ] [clone-graph](https://leetcode-cn.com/problems/clone-graph/)
+* [ ] [number-of-islands](https://leetcode-cn.com/problems/number-of-islands/)
+* [ ] [largest-rectangle-in-histogram](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
+* [ ] [implement-queue-using-stacks](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
+* [ ] [01-matrix](https://leetcode-cn.com/problems/01-matrix/)

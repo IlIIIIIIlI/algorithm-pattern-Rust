@@ -1,4 +1,4 @@
-# 递归
+# 递归思维
 
 ## 介绍
 
@@ -8,7 +8,7 @@
 
 ### [reverse-string](https://leetcode-cn.com/problems/reverse-string/)
 
-> 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组  `char[]`  的形式给出。
+> 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组  `char[]`  的形式给出。
 
 ```Python
 class Solution:
@@ -30,8 +30,7 @@ class Solution:
 
 ### [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
-> 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
-> **你不能只是单纯的改变节点内部的值**，而是需要实际的进行节点交换。
+> 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。 **你不能只是单纯的改变节点内部的值**，而是需要实际的进行节点交换。
 
 ```Python
 class Solution:
@@ -49,7 +48,7 @@ class Solution:
 
 ### [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
 
-> 给定一个整数 n，生成所有由 1 ... n 为节点所组成的二叉搜索树。
+> 给定一个整数 n，生成所有由 1 ... n 为节点所组成的二叉搜索树。
 
 注意：此题用来训练递归思维有理论意义，但是实际上算法返回的树并不是 deep copy，多个树之间会共享子树。
 
@@ -80,10 +79,7 @@ class Solution:
 
 ### [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
 
-> 斐波那契数，通常用  F(n) 表示，形成的序列称为斐波那契数列。该数列由  0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：
-> F(0) = 0,   F(1) = 1
-> F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
-> 给定  N，计算  F(N)。
+> 斐波那契数，通常用  F(n) 表示，形成的序列称为斐波那契数列。该数列由  0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是： F(0) = 0,   F(1) = 1 F(N) = F(N - 1) + F(N - 2), 其中 N > 1. 给定  N，计算  F(N)。
 
 ```Python
 class Solution:
@@ -103,8 +99,7 @@ class Solution:
 
 ## 练习
 
-- [ ] [reverse-string](https://leetcode-cn.com/problems/reverse-string/)
-- [ ] [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
-- [ ] [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
-- [ ] [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
-
+* [ ] [reverse-string](https://leetcode-cn.com/problems/reverse-string/)
+* [ ] [swap-nodes-in-pairs](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+* [ ] [unique-binary-search-trees-ii](https://leetcode-cn.com/problems/unique-binary-search-trees-ii/)
+* [ ] [fibonacci-number](https://leetcode-cn.com/problems/fibonacci-number/)
