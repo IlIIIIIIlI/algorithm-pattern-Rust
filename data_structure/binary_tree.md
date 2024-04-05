@@ -628,7 +628,7 @@ impl Solution {
    * 当`q`为空时，结束循环，说明所有层都遍历完毕。
    * 返回`ans`作为最终的之字形遍历结果。
 
-TODO:
+
 
 ### 二叉搜索树应用
 
@@ -636,59 +636,154 @@ TODO:
 
 > 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
 
-* 思路 1：中序遍历后检查输出是否有序，缺点是如果不平衡无法提前返回结果， 代码略
+* 思路 1：中序遍历后检查输出是否有序，缺点是如果不平衡无法提前返回结果
+```rust
+impl Solution {
+    pub fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        // 内部函数recv进行中序遍历，pre记录上一个节点的值
+        fn recv(root: Option<Rc<RefCell<TreeNode>>>, pre: &mut [i64;1]) -> bool {
+            match root {
+                // 如果当前节点为空，则返回true（空树或者到达叶子节点的空子节点）
+                None => true,
+                Some(node) => {
+                    // 先递归检查左子树
+                    if !recv(node.borrow_mut().left.take(), pre) {
+                        return false; // 如果左子树不满足BST条件，则整棵树不是BST
+                    }
+                    // 检查当前节点的值是否大于上一个节点的值
+                    if node.borrow().val as i64 <= pre[0] {
+                        return false; // 如果不是，返回false
+                    } else {
+                        // 如果是，更新pre为当前节点的值，继续遍历
+                        pre[0] = node.borrow().val as i64;
+                    }
+                    // 最后递归检查右子树
+                    recv(node.borrow_mut().right.take(), pre)    
+                }
+            }
+        }
+        // 初始化pre为[i64::MIN]，以便第一个节点可以是任意值
+        let mut pre = [i64::MIN];
+        // 调用recv从根节点开始中序遍历
+        recv(root, &mut pre)
+    }
+}
+```
+
 * 思路 2：分治法，一个二叉树为合法的二叉搜索树当且仅当左右子树为合法二叉搜索树且根结点值大于右子树最小值小于左子树最大值。缺点是若不用迭代形式实现则无法提前返回，而迭代实现右比较复杂。
 
-```Python
-class Solution:
-    def isValidBST(self, root: TreeNode) -> bool:
+```rust
+impl Solution {
+    // 主函数
+    pub fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        // 调用辅助函数，以i64的最小和最大值作为初始界限
+        Self::is_valid_bst_rec(&root, i64::MIN, i64::MAX)
+    }
 
-        if root is None: return True
-
-        def valid_min_max(node):
-
-            isValid = True
-            if node.left is not None:
-                l_isValid, l_min, l_max = valid_min_max(node.left)
-                isValid = isValid and node.val > l_max
-            else:
-                l_isValid, l_min = True, node.val
-
-            if node.right is not None:
-                r_isValid, r_min, r_max = valid_min_max(node.right)
-                isValid = isValid and node.val < r_min
-            else:
-                r_isValid, r_max = True, node.val
-
-
-            return l_isValid and r_isValid and isValid, l_min, r_max
-
-        return valid_min_max(root)[0]
+    // 辅助递归函数，检查节点是否满足BST条件
+    fn is_valid_bst_rec(node: &Option<Rc<RefCell<TreeNode>>>, lower: i64, upper: i64) -> bool {
+        match node {
+            None => true, // 空节点默认有效
+            Some(n) => {
+                let n = n.borrow();
+                let val = n.val as i64; // 将节点值转换为i64以处理边界情况
+                // 检查当前节点值是否在允许的范围内
+                if val <= lower || val >= upper {
+                    false
+                } else {
+                    // 递归检查左子树和右子树，同时更新允许的值范围
+                    Self::is_valid_bst_rec(&n.left, lower, val) &&
+                    Self::is_valid_bst_rec(&n.right, val, upper)
+                }
+            }
+        }
+    }
+}
 ```
 
 * 思路 3：利用二叉搜索树的性质，根结点为左子树的右边界，右子树的左边界，使用先序遍历自顶向下更新左右子树的边界并检查是否合法，迭代版本实现简单且可以提前返回结果。
 
-```Python
-class Solution:
-    def isValidBST(self, root: TreeNode) -> bool:
+```rust
+impl Solution {
+    // 递归函数，检查当前节点是否满足BST的条件
+    fn rec(root: &Option<Rc<RefCell<TreeNode>>>, left: Option<i32>, right: Option<i32>) -> bool {
+        match &root {
+            // 如果节点为空，则认为是有效的BST
+            None => true,
+            Some(root) => {
+                // 获取当前节点的值
+                let val = root.borrow().val;
+                // 检查当前节点的值是否在(left, right)的范围内
+                // left.map_or(true, |x| x < val) 如果left是None，返回true；否则比较left和val
+                // right.map_or(true, |x| x > val) 如果right是None，返回true；否则比较right和val
+                // 递归检查左子树，更新上界为当前节点的值
+                // 递归检查右子树，更新下界为当前节点的值
+                left.map_or(true, |x| x < val) &&
+                    right.map_or(true, |x| x > val) &&
+                    Self::rec(&root.borrow().left, left, Some(val)) &&
+                    Self::rec(&root.borrow().right, Some(val), right)
+            }
+        }
+    }
 
-        if root is None:
-            return True
+    // 主函数
+    pub fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        // 调用递归函数，初始化边界为None
+        Self::rec(&root, None, None)
+    }
+}
 
-        s = [(root, float('-inf'), float('inf'))]
-        while len(s) > 0:
-            node, low, up = s.pop()
-            if node.left is not None:
-                if node.left.val <= low or node.left.val >= node.val:
-                    return False
-                s.append((node.left, low, node.val))
-            if node.right is not None:
-                if node.right.val <= node.val or node.right.val >= up:
-                    return False
-                s.append((node.right, node.val, up))
-        return True
 ```
 
+```rust
+impl Solution {
+    // 递归函数，检查当前节点是否满足BST的条件
+    // lower和upper分别表示当前节点允许的最小值和最大值范围
+    pub fn helper(root: &Option<Rc<RefCell<TreeNode>>>, lower: i64, upper: i64) -> bool {
+        match root {
+            // 如果节点为空，则认为是有效的BST
+            None => true,
+            Some(node) => {
+                // 获取当前节点的值，并转换为i64类型
+                let val = node.borrow().val as i64;
+                // 检查当前节点的值是否在(lower, upper)的范围内
+                if val <= lower || val >= upper {
+                    false
+                } else {
+                    // 递归检查左子树，更新上界为当前节点的值
+                    // 递归检查右子树，更新下界为当前节点的值
+                    Solution::helper(&node.borrow().left, lower, val) &&
+                    Solution::helper(&node.borrow().right, val, upper)
+                }
+            }
+        }
+    }
+
+    // 主函数
+    pub fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        // 调用递归函数，初始化边界为i64的最小和最大值
+        Solution::helper(&root, i64::min_value(), i64::max_value())
+    }
+}
+```
+{% hint style="info" %}
+- 第一套
+  - **边界类型**：使用了`Option<i32>`来表示节点值的上下边界。这意味着边界可以是一个具体的`i32`值，也可以是没有边界（`None`）。
+  - **递归逻辑**：通过`left`和`right`参数作为当前节点值的允许范围，使用`Option<i32>`的`map_or`方法来比较当前节点值是否在这个范围内。`map_or`在这里用于对`Option`进行条件判断：若`Option`为`Some`，则进行比较；若为`None`，则认为条件满足（`true`）。
+
+- 第二套
+  - **边界类型**：使用了`i64`而不是`i32`来表示节点值的上下边界。这个选择允许在比较时避免可能的`i32`边界值问题（例如，一个节点值正好是`i32::MIN`或`i32::MAX`），因为BST中的节点值被强制转换为`i64`进行比较。
+  - **递归逻辑**：与第一套类似，但是由于边界值是`i64`类型，这里直接比较`node.borrow().val as i64`与`lower`和`upper`。不使用`Option<i32>`的`map_or`，因为`lower`和`upper`始终有具体的`i64`值（包括`i64::min_value()`和`i64::max_value()`作为初始边界）。
+
+- 主要区别
+  - **类型选择和边界处理**：第二套解法通过使用`i64`类型为边界，为`i32`类型的节点值提供了更宽泛的比较范围，这在处理极端值时更为安全。
+  - **实现细节**：虽然两套解法在逻辑上几乎相同，都是通过更新左右边界来递归验证BST的性质，但第二套解法在处理边界值时更加谨慎，避免了可能的溢出或边界检查错误。
+
+- 综合评价
+如果考虑到代码的鲁棒性，特别是在处理边界值时，第二套解法可能更为优越，因为它通过使用`i64`类型，巧妙地避开了`i32`边界值可能引起的问题。此外，第二套解法直接比较值，而不是依赖于`Option<i32>`的处理，可能在理解和维护上稍微直观一些。
+{% endhint %}
+
+TODO:
 #### [insert-into-a-binary-search-tree](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
 
 > 给定二叉搜索树（BST）的根节点和要插入树中的值，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。
@@ -731,5 +826,5 @@ class Solution:
 * [x] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
 * [x] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 * [x] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
-* [ ] [validate-binary-search-tree](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+* [x] [validate-binary-search-tree](https://leetcode-cn.com/problems/validate-binary-search-tree/)
 * [ ] [insert-into-a-binary-search-tree](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
